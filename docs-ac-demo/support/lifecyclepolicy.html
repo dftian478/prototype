@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Life Cycle Policy - Alauda Cloud</title>
+    <style>
+       
+    </style>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-url-hint">
+        当前页面的链接固定为 https://cloud.alauda.io/support/lifecyclepolicy
+    </div>
+
+    <!-- 导航面包屑 -->
+    <div class="breadcrumb-container">
+        <span class="acld-breadcrumb">
+            <a href="index.html">Support</a>
+            <span class="separator">/</span>
+            <span>Life Cycle Policy</span>
+        </span>
+    </div>
+
+    <div class="content">
+        <h1 class="page-title">Alauda Container Platform Life Cycle Policy</h1>
+
+        <!-- Overview Section -->
+        <div class="section">
+            <h2 class="section-title">Overview</h2>
+            <p>Alauda provides a published product life cycle for Alauda Container Platform ("ACP"), in order for customers and partners to effectively plan, deploy, and support their infrastructure. Alauda publishes this life cycle in an effort to provide as much transparency as possible and may make exceptions from these policies as conflicts may arise.</p>
+            <p>Alauda Container Platform v3 provides a time-delineated, phased life cycle, where in at least 4 minor versions can be supported at any time. The time period of support is fixed from the point of minor version release and offers varying levels of support and maintenance. Alauda aims to forecast releases at a 3 month cadence, providing customers ample opportunity to plan.</p>
+            <p>All released errata will remain accessible to active subscribers across the entire life cycle.</p>
+            <img src="../img/support-policy.jpg" width="100%" alt="Support Policy Diagram" class="diagram">
+        </div>
+
+        <!-- Life Cycle Phases Section -->
+        <div class="section">
+            <h2 class="section-title">Life Cycle Phases</h2>
+            
+            <h3 class="subsection-title">Full Support</h3>
+            <p>This phase begins at the GA/release of the minor version and ends after a 9 month period after the GA of the superseding minor release.</p>
+            <p>Full support is provided according to the published <a href="policies.html">Scope of Coverage</a> (AC支持(support) - Scope of Coverage) and <a href="sla.html">Service Level Agreement</a> (AC支持(support) - Terms of Service). Likewise, Development Support is provided according to the published Scope of Coverage and Service Level Agreement.</p>
+            
+            <div class="support-details">
+                <p>During the Full Support Phase:</p>
+                <ul class="phase-list">
+                    <li>Qualified Security Advisories will be released as they become available.</li>
+                    <li>Urgent and Selected High Priority Bug Fix Advisories will be released as they become available.</li>
+                    <li>All other Bug fix may be released via periodic updates.</li>
+                    <li>All other Enhancement Advisories will not be released.</li>
+                </ul>
+                <p>In order to receive security and bug fixes, customers are expected to upgrade their ACP environment to the most current supported micro (3.x.z) version.</p>
+            </div>
+            
+            <h3 class="subsection-title">Maintenance Support</h3>
+            <p><em>This phase commences after the Full Support phase for the respective minor version and ends at 24 months after GA.</em></p>
+            <div class="support-details">
+                <p>During the Maintenance Support phase:</p>
+                <ul class="phase-list">
+                    <li>Qualified Security Advisories will be released as they become available.</li>
+                    <li>Urgent and Selected High Priority Bug Fix Advisories may be released as they become available.</li>
+                    <li>Other Bug Fix may be released at Alauda's discretion, but should not be expected.</li>
+                    <li>All other Enhancement Advisories will not be released.</li>
+                </ul>
+                <p>At the end of the maintenance support phase, software and documentation will continue to be available to customers however no technical support will be provided except assistance to upgrade to a supported version. Full functionality of an ACP cluster(s) may require access to hosted services provided by Alauda, the availability of these services cannot be guaranteed for unmaintained and unsupported versions of ACP.</p>
+            </div>
+        </div>
+
+        <!-- Life Cycle Dates Section -->
+        <div class="section">
+            <h2 class="section-title">Life Cycle Dates</h2>
+            <img src="../img/ACP 3.x Life Cycle Dates.jpg" width="100%" alt="Life Cycle Dates Diagram" class="diagram">
+            
+            <table class="lifecycle-table">
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>General availability</th>
+                        <th>Full support ends</th>
+                        <th>Maintenance support ends</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>v3.18.x</td>
+                        <td>2024-10-15</td>
+                        <td>2025-07-31</td>
+                        <td>2027-10-31</td>
+                    </tr>
+                    <tr>
+                        <td>v3.17.0 Preview</td>
+                        <td>2024-07-02</td>
+                        <td>X</td>
+                        <td>2024-12-31</td>
+                    </tr>
+                    <tr>
+                        <td>v3.16.x</td>
+                        <td>2024-04-25</td>
+                        <td>2025-01-31</td>
+                        <td>2026-04-30</td>
+                    </tr>
+                    <tr>
+                        <td>v3.15.x Preview</td>
+                        <td>2024-01-15</td>
+                        <td>X</td>
+                        <td>2024-07-31</td>
+                    </tr>
+                    <tr>
+                        <td>v3.14.x</td>
+                        <td>2023-10-27</td>
+                        <td>2024-07-31</td>
+                        <td>2025-10-31</td>
+                    </tr>
+                    <tr>
+                        <td>v3.13.x Preview</td>
+                        <td>2023-07-21</td>
+                        <td>X</td>
+                        <td>2024-01-31</td>
+                    </tr>
+                    <tr>
+                        <td>v3.12.x</td>
+                        <td>2023-04-27</td>
+                        <td>2024-01-31</td>
+                        <td>2025-04-30</td>
+                    </tr>
+                    <tr>
+                        <td>v3.11.x Preview</td>
+                        <td>2023-01-18</td>
+                        <td>X</td>
+                        <td>2023-07-31</td>
+                    </tr>
+                    <tr>
+                        <td>v3.10.x</td>
+                        <td>2022-10-31</td>
+                        <td>2023-07-31</td>
+                        <td>2024-10-31</td>
+                    </tr>
+                    <tr>
+                        <td>v3.9.x Preview</td>
+                        <td>2022-07-11</td>
+                        <td>X</td>
+                        <td>2023-01-31</td>
+                    </tr>
+                    <tr>
+                        <td>v3.8.x</td>
+                        <td>2022-04-30</td>
+                        <td>2023-01-31</td>
+                        <td>2024-04-30</td>
+                    </tr>
+                    <tr>
+                        <td>v3.7 Preview</td>
+                        <td>2021-12-31</td>
+                        <td>X</td>
+                        <td>2022-06-30</td>
+                    </tr>
+                    <tr>
+                        <td>v3.6.x</td>
+                        <td>2021-10-31</td>
+                        <td>2022-07-31</td>
+                        <td>2023-10-31</td>
+                    </tr>
+                    <tr>
+                        <td>v3.5.x Preview</td>
+                        <td>2021-06-30</td>
+                        <td>X</td>
+                        <td>2021-12-31</td>
+                    </tr>
+                    <tr>
+                        <td>v3.4.x</td>
+                        <td>2021-04-30</td>
+                        <td>2022-01-31</td>
+                        <td>2023-04-30</td>
+                    </tr>
+                    <tr>
+                        <td>v3.3.x Preview</td>
+                        <td>2020-12-31</td>
+                        <td>X</td>
+                        <td>2021-06-30</td>
+                    </tr>
+                    <tr>
+                        <td>v3.0.x</td>
+                        <td>2020-10-31</td>
+                        <td>2021-07-31</td>
+                        <td>2022-10-31</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html> 

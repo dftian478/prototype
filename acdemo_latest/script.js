@@ -428,8 +428,51 @@ function updateUpgradeUI() {
         packageActions.addClass('d-none');
     } else if (currentVersion === '4.0.1') {
         // 4.0.1 版本显示所有功能
-        uploadSection.removeClass('d-none');
         quickUpgradeSection.removeClass('d-none');
+        
+        // 添加文件上传区域
+        incrementUpload.html(`
+            <h5 class="section-title-l2">
+                <i class="fas fa-upload me-2"></i>升级包配置
+            </h5>
+            <div class="upgrade-package-container">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="quick-upgrade-section mb-4">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="text-muted">快速升级：</span>
+                                <div class="quick-version-buttons d-flex flex-wrap gap-2">
+                                    <button type="button" class="btn btn-outline-primary btn-sm" 
+                                            data-version="3.18" data-bs-toggle="modal" data-bs-target="#upgradeConfirmModal">
+                                        从 3.18 标准版升级
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary btn-sm" 
+                                            data-version="3.16" data-bs-toggle="modal" data-bs-target="#upgradeConfirmModal">
+                                        从 3.16 标准版升级
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary btn-sm" 
+                                            data-version="3.16 RE" data-bs-toggle="modal" data-bs-target="#upgradeConfirmModal">
+                                        从 3.16 RE 版本升级
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary btn-sm" 
+                                            data-version="3.18 Core" data-bs-toggle="modal" data-bs-target="#upgradeConfirmModal">
+                                        从 3.18 Core 版本升级
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="upload-section mt-4">
+                            <div class="section-title-l3 mb-3">上传元数据文件</div>
+                            <div class="upload-area">
+                                <input type="file" id="configFile" class="form-control" accept=".json,.xml,.yaml,.yml">
+                                <small class="text-muted d-block mt-2">请上传配置文件以生成升级包</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `);
+
         // 显示打包记录区域，但清空记录
         recordsSection.removeClass('d-none');
         $('.generation-records').empty().html(`
@@ -438,12 +481,25 @@ function updateUpgradeUI() {
                 <p>暂无打包记录</p>
             </div>
         `);
-        // 显示但禁生成按钮
+        
+        // 显示但禁用生成按钮
         packageActions
             .removeClass('d-none')
             .find('#generateBtn')
             .removeClass('d-none')
             .prop('disabled', true);
+            
+        // 绑定文件上传事件
+        $('#configFile').on('change', function() {
+            const file = this.files[0];
+            if (file) {
+                // 启用生成按钮
+                $('#generateBtn').prop('disabled', false);
+            } else {
+                // 禁用生成按钮
+                $('#generateBtn').prop('disabled', true);
+            }
+        });
     }
 }
 
@@ -1808,7 +1864,7 @@ function handleGenerate() {
             </div>
         `,
         showCancelButton: true,
-        confirmButtonText: '成',
+        confirmButtonText: '生成',
         cancelButtonText: '取消',
         width: '600px',
         customClass: {
