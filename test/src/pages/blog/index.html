@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客文章 - 个人博客</title>
+    <!-- CSS框架 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 图标库 -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="../../index.html">我的博客</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="../../index.html#home">首页</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="../../index.html#blog">博客</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../index.html#about">关于我</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../index.html#portfolio">作品集</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../index.html#contact">联系我</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="blog-header">
+            <div class="container">
+                <h1 class="section-title">博客文章</h1>
+                <div class="search-box">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchInput" placeholder="搜索文章...">
+                        <button class="btn btn-primary" type="button" id="searchButton">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="articles-wrapper">
+                            <div class="articles-filters mb-4">
+                                <div class="filter-group">
+                                    <label>排序：</label>
+                                    <select class="form-select" id="sortSelect">
+                                        <option value="date-desc">最新发布</option>
+                                        <option value="date-asc">最早发布</option>
+                                        <option value="views">最多阅读</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="articles-list">
+                                <article class="article-item" data-categories='["Web开发"]' data-tags='["前端技术", "技术趋势"]'>
+                                    <div class="article-image">
+                                        <img src="../../assets/images/article1.jpg" alt="现代Web开发趋势">
+                                    </div>
+                                    <div class="article-content">
+                                        <div class="article-meta">
+                                            <span class="article-category">Web开发</span>
+                                            <span class="article-date"><i class="far fa-calendar"></i> 2024-01-15</span>
+                                            <span class="article-views"><i class="far fa-eye"></i> 1,234次阅读</span>
+                                        </div>
+                                        <h2><a href="modern-web-dev.html">现代Web开发趋势</a></h2>
+                                        <p class="article-excerpt">2024年，Web开发领域继续快速发展，新的技术和方法论不断涌现。本文将探讨当前最重要的Web开发趋势，帮助开发者了解行业动向，做好技术选型。</p>
+                                        <div class="article-tags">
+                                            <span class="tag">前端技术</span>
+                                            <span class="tag">技术趋势</span>
+                                        </div>
+                                        <a href="modern-web-dev.html" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </article>
+
+                                <article class="article-item" data-categories='["设计"]' data-tags='["UI设计", "用户体验"]'>
+                                    <div class="article-image">
+                                        <img src="../../assets/images/article2.jpg" alt="UI设计最佳实践">
+                                    </div>
+                                    <div class="article-content">
+                                        <div class="article-meta">
+                                            <span class="article-category">设计</span>
+                                            <span class="article-date"><i class="far fa-calendar"></i> 2024-01-10</span>
+                                            <span class="article-views"><i class="far fa-eye"></i> 856次阅读</span>
+                                        </div>
+                                        <h2><a href="#">UI设计最佳实践</a></h2>
+                                        <p class="article-excerpt">分享多年设计经验中总结的UI设计原则和最佳实践，帮助开发者创建更好的用户界面。</p>
+                                        <div class="article-tags">
+                                            <span class="tag">UI设计</span>
+                                            <span class="tag">用户体验</span>
+                                        </div>
+                                        <a href="#" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </article>
+
+                                <article class="article-item" data-categories='["性能优化"]' data-tags='["Web性能", "优化技巧"]'>
+                                    <div class="article-image">
+                                        <img src="../../assets/images/article3.jpg" alt="Web应用性能优化指南">
+                                    </div>
+                                    <div class="article-content">
+                                        <div class="article-meta">
+                                            <span class="article-category">性能优化</span>
+                                            <span class="article-date"><i class="far fa-calendar"></i> 2024-01-05</span>
+                                            <span class="article-views"><i class="far fa-eye"></i> 967次阅读</span>
+                                        </div>
+                                        <h2><a href="#">Web应用性能优化指南</a></h2>
+                                        <p class="article-excerpt">详细介绍Web应用性能优化的各个方面，从前端到后端的全面优化策略。</p>
+                                        <div class="article-tags">
+                                            <span class="tag">Web性能</span>
+                                            <span class="tag">优化技巧</span>
+                                        </div>
+                                        <a href="#" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="articles-pagination">
+                                <nav aria-label="文章分页">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1">上一页</a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">下一页</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <aside class="blog-sidebar">
+                            <div class="sidebar-widget categories-widget">
+                                <h3>文章分类</h3>
+                                <ul class="categories-list">
+                                    <li>
+                                        <a href="#" data-category="Web开发">
+                                            Web开发
+                                            <span class="count">12</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-category="设计">
+                                            设计
+                                            <span class="count">8</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-category="性能优化">
+                                            性能优化
+                                            <span class="count">6</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-category="开发工具">
+                                            开发工具
+                                            <span class="count">4</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="sidebar-widget tags-widget">
+                                <h3>热门标签</h3>
+                                <div class="tags-cloud">
+                                    <a href="#" data-tag="前端技术" class="tag">前端技术</a>
+                                    <a href="#" data-tag="技术趋势" class="tag">技术趋势</a>
+                                    <a href="#" data-tag="UI设计" class="tag">UI设计</a>
+                                    <a href="#" data-tag="用户体验" class="tag">用户体验</a>
+                                    <a href="#" data-tag="Web性能" class="tag">Web性能</a>
+                                    <a href="#" data-tag="优化技巧" class="tag">优化技巧</a>
+                                    <a href="#" data-tag="JavaScript" class="tag">JavaScript</a>
+                                    <a href="#" data-tag="React" class="tag">React</a>
+                                    <a href="#" data-tag="Vue.js" class="tag">Vue.js</a>
+                                </div>
+                            </div>
+
+                            <div class="sidebar-widget archive-widget">
+                                <h3>文章归档</h3>
+                                <ul class="archive-list">
+                                    <li>
+                                        <a href="#" data-month="2024-01">
+                                            2024年1月
+                                            <span class="count">8</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-month="2023-12">
+                                            2023年12月
+                                            <span class="count">12</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-month="2023-11">
+                                            2023年11月
+                                            <span class="count">10</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 个人博客. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../main.js"></script>
+    <script src="blog.js"></script>
+</body>
+</html> 
