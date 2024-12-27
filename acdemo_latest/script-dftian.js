@@ -7,7 +7,8 @@ const plugins = {
             version: '4.0.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '提供基础运行环境和资源调度管理'
+            description: '提供基础运行环境和资源调度管理',
+            dependencies: []
         },
         { 
             id: 'core_service', 
@@ -15,7 +16,8 @@ const plugins = {
             version: '4.0.0', 
             arch: ['x86', 'arm', 'hybrid'],
             category: 'Aligned Plugins',
-            description: '提供服务注册、发现和生命周期管理'
+            description: '提供服务注册、发现和生命周期管理',
+            dependencies: ['core_runtime']
         }
     ],
     extra: [
@@ -25,7 +27,8 @@ const plugins = {
             version: '2.1.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '集中式身份认证和令牌管理服务'
+            description: '集中式身份认证和令牌管理服务',
+            dependencies: ['core_service']
         },
         { 
             id: 'rbac_service', 
@@ -33,7 +36,8 @@ const plugins = {
             version: '1.5.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '基于角色的细粒度权限控制系统'
+            description: '基于角色的细粒度权限控制系统',
+            dependencies: ['auth_center']
         },
         { 
             id: 'vm_monitor', 
@@ -41,7 +45,8 @@ const plugins = {
             version: '3.0.0', 
             arch: ['x86'],
             category: 'Agnostic Plugins',
-            description: '虚拟机性能指标采集和状态监控'
+            description: '虚拟机性能指标采集和状态监控',
+            dependencies: ['core_service']
         },
         { 
             id: 'resource_analyzer', 
@@ -49,7 +54,8 @@ const plugins = {
             version: '2.0.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '系统资源使用分析和优化建议'
+            description: '系统资源使用分析和优化建议',
+            dependencies: ['vm_monitor']
         },
         { 
             id: 'container_manager', 
@@ -57,7 +63,8 @@ const plugins = {
             version: '4.0.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '容器生命周期管理和资源隔离控制'
+            description: '容器生命周期管理和资源隔离控制',
+            dependencies: ['core_service']
         },
         { 
             id: 'orchestration_service', 
@@ -65,7 +72,8 @@ const plugins = {
             version: '3.5.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '容器集群编排和调度策略管理'
+            description: '容器集群编排和调度策略管理',
+            dependencies: ['container_manager']
         },
         { 
             id: 'prometheus_agent', 
@@ -73,7 +81,8 @@ const plugins = {
             version: '2.3.0', 
             arch: ['x86'],
             category: 'Agnostic Plugins',
-            description: '采集和暴露符合Prometheus规范的监控指标'
+            description: '采集和暴露符合Prometheus规范的监控指标',
+            dependencies: []
         },
         { 
             id: 'container_exporter', 
@@ -81,7 +90,8 @@ const plugins = {
             version: '1.8.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '容器运行时性能指标收集和导出'
+            description: '容器运行时性能指标收集和导出',
+            dependencies: ['prometheus_agent', 'container_manager']
         },
         { 
             id: 'pipeline_engine', 
@@ -89,7 +99,8 @@ const plugins = {
             version: '3.2.0', 
             arch: ['x86'],
             category: 'Agnostic Plugins',
-            description: '自动化构建和部署流水线执行引擎'
+            description: '自动化构建和部署流水线执行引擎',
+            dependencies: ['core_runtime']
         },
         { 
             id: 'artifact_manager', 
@@ -97,7 +108,8 @@ const plugins = {
             version: '2.4.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '构建产物管理和版本控制服务'
+            description: '构建产物管理和版本控制服务',
+            dependencies: ['core_runtime']
         },
         { 
             id: 'code_scanner', 
@@ -105,7 +117,8 @@ const plugins = {
             version: '2.0.0', 
             arch: ['x86'],
             category: 'Agnostic Plugins',
-            description: '代码质量扫描和安全漏洞检测'
+            description: '代码质量扫描和安全漏洞检测',
+            dependencies: ['core_runtime']
         },
         { 
             id: 'quality_analyzer', 
@@ -113,7 +126,8 @@ const plugins = {
             version: '1.5.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '代码质量指标分析和评估报告'
+            description: '代码质量指标分析和评估报告',
+            dependencies: ['core_runtime']
         },
         { 
             id: 'service_registry', 
@@ -121,7 +135,8 @@ const plugins = {
             version: '4.0.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '分布式服务注册和服务健康检查'
+            description: '分布式服务注册和服务健康检查',
+            dependencies: ['core_runtime']
         },
         { 
             id: 'config_center', 
@@ -129,7 +144,8 @@ const plugins = {
             version: '3.0.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '集中式配置管理和动态配置下发'
+            description: '集中式配置管理和动态配置下发',
+            dependencies: ['core_runtime']
         },
         { 
             id: 'api_gateway', 
@@ -137,7 +153,8 @@ const plugins = {
             version: '3.5.0', 
             arch: ['x86'],
             category: 'Agnostic Plugins',
-            description: 'API路由转发和请求限流控制'
+            description: 'API路由转发和请求限流控制',
+            dependencies: ['core_runtime']
         },
         { 
             id: 'traffic_manager', 
@@ -145,7 +162,8 @@ const plugins = {
             version: '2.0.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '服务流量治理和负载均衡控制'
+            description: '服务流量治理和负载均衡控制',
+            dependencies: ['core_runtime']
         },
         { 
             id: 'data_collector', 
@@ -153,7 +171,8 @@ const plugins = {
             version: '2.5.0', 
             arch: ['x86', 'arm'],
             category: 'Aligned Plugins',
-            description: '多源异构数据采集和预处理'
+            description: '多源异构数据采集和预处理',
+            dependencies: ['core_runtime']
         },
         { 
             id: 'etl_service', 
@@ -161,7 +180,8 @@ const plugins = {
             version: '2.0.0', 
             arch: ['x86'],
             category: 'Agnostic Plugins',
-            description: '数据清洗转换和加载处理服务'
+            description: '数据清洗转换和加载处理服务',
+            dependencies: ['core_runtime']
         }
     ]
 };
@@ -1153,7 +1173,7 @@ function handlePackageTypeChange() {
             incrementUpload.removeClass('d-none');
             featuresSelector.addClass('d-none');
             generateBtn.removeClass('d-none');
-            // 重���版本���择信息
+            // 重置版本选择信息
             $('#selectedVersion').addClass('d-none');
             break;
             
@@ -1843,6 +1863,14 @@ function handleGenerate() {
                     <div class="info-item">
                         <span class="info-label">架构：</span>
                         <span class="info-value">${currentArch.toUpperCase()}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">已选功能：</span>
+                        <div class="info-value feature-list">
+                            ${selectedFeatures.map(feature => `
+                                <div class="selected-item">${feature}</div>
+                            `).join('')}
+                        </div>
                     </div>
                     <div class="info-item">
                         <span class="info-label">包含插件：</span>
@@ -2734,35 +2762,10 @@ function updateRelatedPlugins(featureId, isChecked) {
     
     if (!feature) return;
     
-    // 获取所有依赖插件
-    const allDependentPlugins = new Set();
     feature.plugins.forEach(pluginId => {
-        allDependentPlugins.add(pluginId);
-        // 获取该插件的所有依赖插件
-        const plugin = plugins[pluginId];
-        if (plugin && plugin.dependencies) {
-            plugin.dependencies.forEach(depId => {
-                allDependentPlugins.add(depId);
-            });
-        }
-    });
-    
-    // 更新所有相关插件的状态
-    allDependentPlugins.forEach(pluginId => {
         const pluginCard = $(`#${pluginId}`).closest('.plugin-card');
         const pluginCheckbox = $(`#${pluginId}`);
-        
-        if (!pluginCard.length) {
-            // 如果卡片不存在，创建新的插件卡片
-            const plugin = plugins[pluginId];
-            if (plugin) {
-                const newCard = createPluginCard(plugin);
-                // 将新卡片添加到适当的分组中
-                const targetGroup = plugin.type === 'core' ? '.core-plugins-container' : '.extra-plugins-container';
-                $(targetGroup).append(newCard);
-            }
-        }
-        
+
         if (isChecked) {
             pluginCheckbox.prop('checked', true);
             pluginCard.removeClass('disabled').addClass('selected');
@@ -2771,44 +2774,16 @@ function updateRelatedPlugins(featureId, isChecked) {
             const isNeededByOtherFeatures = Object.entries(featurePluginMapping)
                 .some(([id, f]) => 
                     id !== featureId && 
-                    $(`#feature_${id}`).prop('checked') && 
-                    (f.plugins.includes(pluginId) || 
-                     f.plugins.some(p => plugins[p]?.dependencies?.includes(pluginId)))
+                    f.plugins.includes(pluginId) && 
+                    $(`#feature_${id}`).prop('checked')
                 );
             
             if (!isNeededByOtherFeatures) {
                 pluginCheckbox.prop('checked', false);
-                pluginCard.removeClass('selected');
+                pluginCard.addClass('disabled').removeClass('selected');
             }
         }
     });
-}
-
-// 添加创建插件卡片的辅助函数
-function createPluginCard(plugin) {
-    return `
-        <div class="plugin-card">
-            <div class="card">
-                <div class="card-body">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="${plugin.id}">
-                        <label class="form-check-label" for="${plugin.id}">
-                            ${plugin.name}
-                            ${plugin.version ? `<span class="version-badge">v${plugin.version}</span>` : ''}
-                        </label>
-                    </div>
-                    <div class="plugin-info">
-                        <div class="plugin-description">${plugin.description || ''}</div>
-                        ${plugin.dependencies && plugin.dependencies.length > 0 ? `
-                            <div class="plugin-dependencies">
-                                <small class="text-muted">依赖插件：${plugin.dependencies.map(depId => plugins[depId]?.name || depId).join(', ')}</small>
-                            </div>
-                        ` : ''}
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
 }
 
 // 更新功能选择区域的HTML
@@ -3110,219 +3085,137 @@ function checkPendingRecordsCount() {
 
 // 添加新的下载弹框显示函数
 function showDownloadModal(showArchSelector = true) {
-    const modalHtml = `
-        <div class="modal fade" id="downloadModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">${showArchSelector ? '选择架构并下载' : '下载安装包'}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body p-0">
-                        <div class="upgrade-modal-container">
-                            ${showArchSelector ? `
-                            <!-- 左侧架构选择区域 -->
-                            <div class="arch-selector">
-                                <div class="arch-options">
-                                    <div class="arch-option">
-                                        <input type="radio" class="btn-check" name="upgradeArch" 
-                                               id="upgradeArchX86" value="x86" checked>
-                                        <label class="btn arch-btn" for="upgradeArchX86">x86</label>
-                                    </div>
-                                    <div class="arch-option">
-                                        <input type="radio" class="btn-check" name="upgradeArch" 
-                                               id="upgradeArchArm" value="arm">
-                                        <label class="btn arch-btn" for="upgradeArchArm">ARM</label>
-                                    </div>
-                                    <div class="arch-option">
-                                        <input type="radio" class="btn-check" name="upgradeArch" 
-                                               id="upgradeArchHybrid" value="hybrid">
-                                        <label class="btn arch-btn" for="upgradeArchHybrid">异构</label>
-                                    </div>
-                                </div>
-                            </div>
-                            ` : ''}
-                            
-                            <!-- 右侧下载区域 -->
-                            <div class="download-info-panel" ${!showArchSelector ? 'style="padding-left: 0;"' : ''}>
-                                <div class="download-sections-container">
-                                    <!-- 安装包下载区域 -->
-                                    <div class="download-section">
-                                        <div class="section-title">
-                                            <small class="text-muted">安装包</small>
-                                        </div>
-                                        <div class="download-options">
-                                            <div class="download-option">
-                                                <div class="option-header">
-                                                    <div class="d-flex justify-content-between align-items-center w-100">
-                                                        <small class="text-muted">浏览器下载</small>
-                                                    </div>
-                                                </div>
-                                                <button class="btn btn-primary btn-sm download-btn">
-                                                    <i class="fas fa-download me-1"></i>直接下载
-                                                </button>
-                                            </div>
-                                            <div class="download-option">
-                                                <div class="option-header">
-                                                    <div class="d-flex justify-content-between align-items-center w-100">
-                                                        <small class="text-muted">第三方工具下载</small>
-                                                        <button class="btn btn-link btn-sm copy-btn" data-clipboard-target="#packageUrl">
-                                                            <i class="fas fa-copy"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="download-link" id="packageUrl">
-                                                    https://download.example.com/packages/v4.0.0/x86/package.tar.gz
-                                                </div>
-                                            </div>
-                                            <div class="download-option">
-                                                <div class="option-header">
-                                                    <div class="d-flex justify-content-between align-items-center w-100">
-                                                        <small class="text-muted">命令行下载</small>
-                                                        <button class="btn btn-link btn-sm copy-btn" data-clipboard-target="#packageCmd">
-                                                            <i class="fas fa-copy"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="download-link" id="packageCmd">
-                                                    wget https://download.example.com/packages/v4.0.0/x86/package.tar.gz
-                                                </div>
-                                            </div>
-                                            <div class="download-option">
-                                                <div class="option-header">
-                                                    <div class="d-flex justify-content-between align-items-center w-100">
-                                                        <small class="text-muted">MD5 校验值</small>
-                                                        <button class="btn btn-link btn-sm copy-btn" data-clipboard-target="#packageMd5">
-                                                            <i class="fas fa-copy"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="download-link" id="packageMd5">
-                                                    e9c1q52p3m4k5n6b7v8c9x0z1a2s3d4f5g6h7j8k9l0
-                                                </div>
-                                                <div class="command-example">
-                                                    <div class="command-header">
-                                                        <small class="text-muted"># 下载完成后验证</small>
-                                                        <button class="btn btn-link btn-sm copy-btn" data-clipboard-target="#packageVerifyCmd">
-                                                            <i class="fas fa-copy"></i>
-                                                        </button>
-                                                    </div>
-                                                    <code class="command-code" id="packageVerifyCmd">echo "e9c1q52p3m4k5n6b7v8c9x0z1a2s3d4f5g6h7j8k9l0 package.tar.gz" | md5sum -c</code>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- 签名文件下载区域 -->
-                                    <div class="download-section">
-                                        <div class="section-title">
-                                            <small class="text-muted">签名文件</small>
-                                        </div>
-                                        <div class="download-options">
-                                            <div class="download-option">
-                                                <div class="option-header">
-                                                    <div class="d-flex justify-content-between align-items-center w-100">
-                                                        <small class="text-muted">浏览器下载</small>
-                                                    </div>
-                                                </div>
-                                                <button class="btn btn-primary btn-sm download-btn">
-                                                    <i class="fas fa-download me-1"></i>直接下载
-                                                </button>
-                                            </div>
-                                            <div class="download-option">
-                                                <div class="option-header">
-                                                    <div class="d-flex justify-content-between align-items-center w-100">
-                                                        <small class="text-muted">第三方工具下载</small>
-                                                        <button class="btn btn-link btn-sm copy-btn" data-clipboard-target="#signUrl">
-                                                            <i class="fas fa-copy"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="download-link" id="signUrl">
-                                                    https://download.example.com/packages/v4.0.0/x86/package.tar.gz.sign
-                                                </div>
-                                            </div>
-                                            <div class="download-option">
-                                                <div class="option-header">
-                                                    <div class="d-flex justify-content-between align-items-center w-100">
-                                                        <small class="text-muted">命令行下载</small>
-                                                        <button class="btn btn-link btn-sm copy-btn" data-clipboard-target="#signCmd">
-                                                            <i class="fas fa-copy"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="download-link" id="signCmd">
-                                                    wget https://download.example.com/packages/v4.0.0/x86/package.tar.gz.sign
-                                                </div>
-                                            </div>
-                                            <div class="download-option">
-                                                <div class="option-header">
-                                                    <div class="d-flex justify-content-between align-items-center w-100">
-                                                        <small class="text-muted">MD5 校验值</small>
-                                                        <button class="btn btn-link btn-sm copy-btn" data-clipboard-target="#signMd5">
-                                                            <i class="fas fa-copy"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="download-link" id="signMd5">
-                                                    a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2
-                                                </div>
-                                                <div class="command-example">
-                                                    <div class="command-header">
-                                                        <small class="text-muted"># 下载完成后验证</small>
-                                                        <button class="btn btn-link btn-sm copy-btn" data-clipboard-target="#signVerifyCmd">
-                                                            <i class="fas fa-copy"></i>
-                                                        </button>
-                                                    </div>
-                                                    <code class="command-code" id="signVerifyCmd">echo "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2 package.tar.gz.sign" | md5sum -c</code>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+    const selectedPlugins = getSelectedPlugins();
+    const archType = $('[data-arch].active').data('arch');
+    
+    let modalContent = `
+        <div class="download-info">
+            <div class="info-row">
+                <span class="info-label">安装包版本：</span>
+                <span class="info-value">${$('.version-item.active').data('version')}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">安装包类型：</span>
+                <span class="info-value">${$('.package-type-selector .btn.active').text()}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">系统架构：</span>
+                <span class="info-value">${archType === 'hybrid' ? '异构' : archType.toUpperCase()}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">包含插件：</span>
+                <div class="info-value plugins-list">
+                    ${selectedPlugins.map(plugin => `
+                        <div class="plugin-item">
+                            <span class="plugin-name">${plugin.name}</span>
+                            <span class="plugin-version">v${plugin.version}</span>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
-                    </div>
+                    `).join('')}
                 </div>
             </div>
         </div>
     `;
 
-    // 移除已存在的模态框
-    $('#downloadModal').remove();
-    
-    // 添加新的模态框到页面
-    $('body').append(modalHtml);
-    
-    // 初始化复制功能
-    initializeClipboard();
-    
-    // 显示模态框
-    const modal = new bootstrap.Modal('#downloadModal');
-    modal.show();
-    
-    // 如果显示架构选择器，绑定架构变化事件
-    if (showArchSelector) {
-        $('#downloadModal input[name="upgradeArch"]').change(function() {
-            const selectedArch = $(this).val();
-            updateDownloadInfo(selectedArch);
-        });
-    }
+    // ... existing code ...
 }
 
-// 初始化复制功能
-function initializeClipboard() {
-    const clipboard = new ClipboardJS('.copy-btn');
-    clipboard.on('success', function(e) {
-        const btn = $(e.trigger);
-        const originalHtml = btn.html();
-        btn.html('<i class="fas fa-check"></i>');
-        setTimeout(() => {
-            btn.html(originalHtml);
-        }, 1500);
-        e.clearSelection();
+function createPluginCard(plugin, group) {
+    const isDisabled = plugin.arch && !plugin.arch.includes($('[data-arch].active').data('arch'));
+    const isChecked = $(`#${plugin.id}`).prop('checked') || false;
+    
+    return `
+        <div class="col-md-4 mb-3">
+            <div class="card plugin-card ${isDisabled ? 'disabled' : ''} ${isChecked ? 'selected' : ''}">
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input plugin-checkbox" type="checkbox" 
+                            id="${plugin.id}" 
+                            ${isDisabled ? 'disabled' : ''} 
+                            ${isChecked ? 'checked' : ''}>
+                        <label class="form-check-label" for="${plugin.id}">
+                            <h5 class="card-title">${plugin.name}</h5>
+                        </label>
+                    </div>
+                    <p class="card-text text-muted">${plugin.description || '暂无描述'}</p>
+                    <div class="plugin-meta">
+                        <span class="badge bg-info">v${plugin.version}</span>
+                        <span class="badge bg-secondary">${plugin.arch ? plugin.arch.join(', ') : 'ALL'}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function renderPlugins() {
+    const archType = $('[data-arch].active').data('arch');
+    const container = $('.features-list');
+    container.empty();
+
+    // 创建一个包含所有插件的数组
+    const allPlugins = [...plugins.core, ...plugins.extra];
+    
+    // 创建插件卡片行容器
+    let row = $('<div class="row"></div>');
+    container.append(row);
+
+    // 渲染所有插件卡片
+    allPlugins.forEach(plugin => {
+        row.append(createPluginCard(plugin));
     });
+
+    // 绑定插件选择事件
+    bindPluginEvents();
+}
+
+function bindPluginEvents() {
+    $('.plugin-checkbox').on('change', function() {
+        const pluginId = $(this).attr('id');
+        const isChecked = $(this).prop('checked');
+        
+        // 更新卡片样式
+        $(this).closest('.plugin-card').toggleClass('selected', isChecked);
+        
+        // 更新依赖关系
+        updatePluginDependencies(pluginId, isChecked);
+        
+        // 更新下载区域
+        updateDownloadSection();
+    });
+}
+
+function updatePluginDependencies(pluginId, isChecked) {
+    const allPlugins = [...plugins.core, ...plugins.extra];
+    const plugin = allPlugins.find(p => p.id === pluginId);
+    
+    if (!plugin) return;
+    
+    if (isChecked) {
+        // 选中插件时，自动选中其依赖
+        plugin.dependencies.forEach(depId => {
+            const depCheckbox = $(`#${depId}`);
+            if (!depCheckbox.prop('checked')) {
+                depCheckbox.prop('checked', true).trigger('change');
+            }
+        });
+    } else {
+        // 取消选中时，检查是否有其他插件依赖此插件
+        const dependentPlugins = allPlugins.filter(p => 
+            p.dependencies.includes(pluginId) && 
+            $(`#${p.id}`).prop('checked')
+        );
+        
+        if (dependentPlugins.length > 0) {
+            // 如果有依赖此插件的其他插件被选中，显示警告
+            const dependentNames = dependentPlugins.map(p => p.name).join('、');
+            Swal.fire({
+                title: '无法取消选择',
+                text: `该插件被以下插件依赖：${dependentNames}`,
+                icon: 'warning',
+                confirmButtonText: '确定'
+            });
+            // 重新选中此插件
+            $(`#${pluginId}`).prop('checked', true);
+        }
+    }
 }
