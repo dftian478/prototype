@@ -4,44 +4,83 @@
 作为产品经理的原型开发辅助工具，需要生成符合前端最佳实践的、易于维护的、模块化的网页原型。
 
 ## 项目结构
-请严格按照以下结构组织项目文件：
+请创建项目文件目录，并严格按照以下结构组织项目文件：
 
 ```
-project-root/
+project-root/                 # 新的项目名称
 ├── docs/
 │   ├── CHANGELOG.md          # 变更日志
-│   ├── COMPONENTS.md         # 组件文档
-│   └── API.md                # API接口文档
+│   └── COMPONENTS.md         # 组件文档
 ├── src/
 │   ├── components/           # 可复用组件
 │   │   └── [ComponentName]/
-│   │       ├── index.html
+│   │       ├── index.html    # 组件可独立运行的HTML
 │   │       ├── style.css
 │   │       └── script.js
 │   ├── pages/               # 页面组件
 │   │   └── [PageName]/
-│   │       ├── index.html
+│   │       ├── index.html    # 页面可独立运行的HTML
 │   │       ├── style.css
 │   │       └── script.js
 │   ├── assets/             # 静态资源
 │   │   ├── images/
-│   │   ├── icons/
-│   │   └── styles/
+│   │   ├── styles/
+│   │   └── lib/            # 第三方库的本地副本
 │   ├── utils/             # 工具函数
 │   │   └── helpers.js
-│   ├── index.html         # 主页面
+│   ├── index.html         # 主页面，是所有页面的入口
 │   ├── style.css          # 全局样式
 │   └── main.js            # 主脚本
 └── metadata.json          # 项目元数据
 ```
 
-## 代码规范
+## 独立运行支持
+
+### 1. 资源引用规范
+为确保HTML文件可以独立运行，每个HTML文件都需要：
+
+1. 使用相对路径引用资源
+2. 包含必要的第三方库（支持本地和CDN双模式）
+3. 引入对应的CSS和JavaScript文件
+
+示例结构：
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面标题</title>
+    <!-- 本地库引用（优先） -->
+    <link rel="stylesheet" href="../../assets/lib/bootstrap.min.css">
+    <!-- CDN备选引用 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          onerror="this.onerror=null;this.href='../../assets/lib/bootstrap.min.css';">
+    <!-- 页面自身样式 -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- 页面内容 -->
+    
+    <!-- 本地库引用（优先） -->
+    <script src="../../assets/lib/bootstrap.bundle.min.js"></script>
+    <!-- CDN备选引用 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            onerror="this.onerror=null;this.src='../../assets/lib/bootstrap.bundle.min.js';"></script>
+    <!-- 页面自身脚本 -->
+    <script src="./script.js"></script>
+</body>
+</html>
+```
 
 ### HTML规范
 1. 使用语义化标签（nav, header, main, footer等）
-2. 确保可访问性（添加适当的ARIA属性）
-3. 使用有意义的class和id命名
-4. 保持结构清晰，适当缩进
+2. 使用有意义的class和id命名
+3. 保持结构清晰，适当缩进
+4. 每个HTML文件都应该是完整且可独立运行的
+5. 使用相对路径引用资源
+6. 提供CDN资源加载失败的本地备选方案
+7. 确保跨平台兼容性（使用UTF-8编码）
 
 ### CSS规范
 1. 使用BEM命名规范
@@ -52,10 +91,17 @@ project-root/
 
 ### JavaScript规范
 1. 使用ES6+语法
-2. 组件化开发
-3. 事件委托优化
-4. 异步操作使用Promise/async-await
-5. 适当的错误处理
+2. 使用事件委托优化性能
+   ```javascript
+   // 推荐的事件委托方式
+   document.querySelector('.list').addEventListener('click', (e) => {
+     if (e.target.matches('.list-item')) {
+       // 处理列表项点击
+     }
+   });
+   ```
+3. 简单的状态管理
+4. 基础的错误处理
 
 ## CDN资源使用
 请使用以下推荐的CDN资源：
@@ -63,13 +109,6 @@ project-root/
 ```html
 <!-- CSS框架 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- 或 -->
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-<!-- JavaScript库 -->
-<script src="https://cdn.jsdelivr.net/npm/vue@3.2.31"></script>
-<!-- 或 -->
-<script src="https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js"></script>
 
 <!-- 图标库 -->
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
@@ -86,15 +125,7 @@ project-root/
       "name": "组件名称",
       "path": "文件路径",
       "description": "功能描述",
-      "dependencies": ["依赖组件"],
-      "apis": [
-        {
-          "name": "函数/API名称",
-          "description": "功能描述",
-          "parameters": ["参数说明"],
-          "returnValue": "返回值说明"
-        }
-      ]
+      "dependencies": ["依赖组件"]
     }
   ],
   "pages": [
@@ -107,16 +138,15 @@ project-root/
   ]
 }
 ```
+
 ## 交互设计规范
 
 ### 1. 基础交互原则
-- **反馈及时性**：用户的每个操作都应该在300ms内得到明确的反馈
-- **可预测性**：交互结果应符合用户的预期
-- **容错性**：提供操作撤销和错误恢复机制
-- **一致性**：相似的操作应具有相似的交互方式
-- **简单性**：减少用户操作步骤，避免复杂的交互流程
+- **反馈及时性**：用户操作后及时反馈
+- **可预测性**：交互结果符合预期
+- **简单性**：减少操作步骤
 
-### 2. 常见交互模式规范
+### 2. 常见交互模式
 
 #### 2.1 表单交互
 ```json
@@ -199,8 +229,7 @@ project-root/
 {
   "断点值": {
     "移动端": "< 768px",
-    "平板": "768px - 1024px",
-    "桌面": "> 1024px"
+    "桌面": ">= 768px"
   },
   "交互调整": {
     "移动端": {
@@ -319,51 +348,20 @@ project-root/
 ## 文档要求
 
 ### 1. 变更日志 (CHANGELOG.md)
-- 记录每次更新的内容
-- 使用语义化版本号
-- 详细描述改动内容
+- 记录更新内容
+- 版本号
+- 更新说明
 
 ### 2. 组件文档 (COMPONENTS.md)
-- 组件名称和功能描述
+- 组件名称和功能
 - 使用示例
-- 参数说明
-- 依赖关系
-
-### 3. API文档 (API.md)
-- API接口说明
-- 请求/响应格式
-- 错误处理
-- 使用示例
+- 依赖说明
 
 ## 开发流程
-1. 分析新需求
-2. 更新元数据文件
-3. 创建/修改相关组件
+1. 分析需求
+2. 更新元数据
+3. 创建/修改组件，添加主文件的入口
 4. 更新文档
-5. 提供测试说明
-
-## 响应格式
-当收到新的开发需求时，请按以下步骤响应：
-
-1. 需求分析
-   - 功能点拆分
-   - 技术选型建议
-   - 依赖组件识别
-
-2. 实现计划
-   - 文件结构变更
-   - 新增组件设计
-   - API设计（如需要）
-
-3. 代码生成
-   - 按照项目结构生成相应代码
-   - 遵循代码规范
-   - 包含必要注释
-
-4. 文档更新
-   - 更新元数据
-   - 补充变更日志
-   - 更新相关文档
 
 ## 注意事项
 1. 保持代码简洁清晰

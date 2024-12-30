@@ -1,0 +1,14 @@
+{
+  "projectName": "KKK原型项目",
+  "version": "0.1.0",
+  "lastUpdate": "2024-03-19",
+  "components": [],
+  "pages": [
+    {
+      "name": "网络路由创建",
+      "path": "src/pages/network-route/index.html",
+      "components": [],
+      "description": "创建和配置网络路由的表单页面"
+    }
+  ]
+} 

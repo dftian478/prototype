@@ -1,0 +1,54 @@
+/* 表单样式 */
+.form-label.required::after {
+    content: " *";
+    color: var(--danger-color);
+}
+
+/* 按钮组样式 */
+.btn-group {
+    width: 100%;
+}
+
+.btn-group .btn {
+    flex: 1;
+}
+
+/* 端口映射容器样式 */
+.port-mapping-container {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.port-mapping-row:not(:last-child) {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* 开关样式 */
+.form-check-input {
+    cursor: pointer;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .port-mapping-row .row {
+        flex-direction: column;
+    }
+    
+    .port-mapping-row .col {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+} 

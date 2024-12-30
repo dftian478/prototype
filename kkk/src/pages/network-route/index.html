@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建网络路由 - KKK原型项目</title>
+    <link rel="stylesheet" href="../../assets/lib/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          rel="stylesheet"
+          onerror="this.onerror=null;this.href='../../assets/lib/bootstrap.min.css';">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">创建网络路由</h5>
+            </div>
+            <div class="card-body">
+                <form id="routeForm">
+                    <!-- 基本信息 -->
+                    <div class="mb-3">
+                        <label for="routeName" class="form-label required">名称</label>
+                        <input type="text" class="form-control" id="routeName" required
+                               placeholder="以字母开头，支持使用a-z、0-9、-">
+                    </div>
+                    <div class="mb-3">
+                        <label for="displayName" class="form-label">显示名称</label>
+                        <input type="text" class="form-control" id="displayName">
+                    </div>
+
+                    <!-- 类型选择 -->
+                    <div class="mb-3">
+                        <label class="form-label">类型</label>
+                        <div class="btn-group" role="group">
+                            <input type="radio" class="btn-check" name="routeType" id="clusterIP" checked>
+                            <label class="btn btn-outline-primary" for="clusterIP">ClusterIP</label>
+
+                            <input type="radio" class="btn-check" name="routeType" id="nodePort">
+                            <label class="btn btn-outline-primary" for="nodePort">NodePort</label>
+
+                            <input type="radio" class="btn-check" name="routeType" id="externalName">
+                            <label class="btn btn-outline-primary" for="externalName">ExternalName</label>
+                        </div>
+                    </div>
+
+                    <!-- 虚拟IP -->
+                    <div class="mb-3">
+                        <label class="form-label">虚拟IP</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="virtualIP">
+                        </div>
+                    </div>
+
+                    <!-- 目标组件 -->
+                    <div class="mb-3">
+                        <label class="form-label">目标组件</label>
+                        <div class="btn-group" role="group">
+                            <input type="radio" class="btn-check" name="targetType" id="computeNode" checked>
+                            <label class="btn btn-outline-primary" for="computeNode">计算组件</label>
+
+                            <input type="radio" class="btn-check" name="targetType" id="virtualGroup">
+                            <label class="btn btn-outline-primary" for="virtualGroup">守护进程集</label>
+
+                            <input type="radio" class="btn-check" name="targetType" id="statefulSet">
+                            <label class="btn btn-outline-primary" for="statefulSet">有状态副本集</label>
+                        </div>
+                    </div>
+
+                    <!-- 组件名称 -->
+                    <div class="mb-3">
+                        <label for="componentName" class="form-label required">组件名称</label>
+                        <select class="form-select" id="componentName" required>
+                            <option value="">请选择组件</option>
+                        </select>
+                    </div>
+
+                    <!-- 端口映射 -->
+                    <div class="mb-4">
+                        <label class="form-label required">端口映射</label>
+                        <div class="port-mapping-container">
+                            <div class="port-mapping-row">
+                                <div class="row g-3 align-items-center mb-2">
+                                    <div class="col">
+                                        <label class="form-label">协议</label>
+                                        <select class="form-select">
+                                            <option value="TCP" selected>TCP</option>
+                                            <option value="UDP">UDP</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label class="form-label required">服务端口</label>
+                                        <input type="number" class="form-control" required>
+                                    </div>
+                                    <div class="col">
+                                        <label class="form-label required">容器端口</label>
+                                        <input type="number" class="form-control" required>
+                                    </div>
+                                    <div class="col">
+                                        <label class="form-label">服务端口名称</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control">
+                                            <button type="button" class="btn btn-outline-danger remove-port">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-link text-primary" id="addPort">
+                            <i class="fas fa-plus"></i> 添加
+                        </button>
+                    </div>
+
+                    <!-- 会话保持 -->
+                    <div class="mb-3">
+                        <label class="form-label">会话保持</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="sessionAffinity">
+                        </div>
+                    </div>
+
+                    <!-- 操作按钮 -->
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-secondary" id="cancelBtn">取消</button>
+                        <div>
+                            <button type="button" class="btn btn-outline-primary me-2" id="yamlBtn">YAML</button>
+                            <button type="submit" class="btn btn-primary" id="submitBtn">表单</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/lib/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            onerror="this.onerror=null;this.src='../../assets/lib/bootstrap.bundle.min.js';"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="./script.js" type="module"></script>
+</body>
+</html> 
