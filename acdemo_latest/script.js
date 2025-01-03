@@ -1845,6 +1845,14 @@ function handleGenerate() {
                         <span class="info-value">${currentArch.toUpperCase()}</span>
                     </div>
                     <div class="info-item">
+                        <span class="info-label">功能选择：</span>
+                        <div class="info-value feature-list">
+                            ${selectedFeatures.map(feature => `
+                                <div class="selected-item">${feature}</div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="info-item">
                         <span class="info-label">包含插件：</span>
                         <div class="info-value plugin-list">
                             ${selectedPlugins.map(plugin => `
@@ -2856,11 +2864,9 @@ function updateFeaturesSection() {
                                     ${feature.name}
                                     ${feature.isCore ? '<span class="badge bg-secondary">必选</span>' : ''}
                                 </label>
-                                ${!feature.isCore ? `
-                                    <div class="feature-info-icon ms-2" data-feature-id="${id}">
-                                        <i class="fas fa-info-circle text-muted"></i>
-                                    </div>
-                                ` : ''}
+                                <div class="feature-info-icon ms-2" data-feature-id="${id}">
+                                    <i class="fas fa-info-circle text-muted"></i>
+                                </div>
                             </div>
                         </div>
                     `).join('')}
@@ -2957,43 +2963,75 @@ function bindFeatureInfoEvents() {
             const pluginsInfo = getPluginsInfo(feature.plugins);
             
             // 生成提示内容
-            const tooltipContent = `
-                <div class="tooltip-header">
-                    <div class="tooltip-title">
-                        <div class="title-content">
-                            ${feature.name}
-                            <span class="feature-version">v${currentVersion}</span>
+            let tooltipContent;
+            if (feature.isCore) {
+                // 核心功能的提示内容，保持与其他功能一致的样式
+                const corePlugin = pluginsInfo[0]; // 获取第一个核心插件
+                tooltipContent = `
+                    <div class="tooltip-header">
+                        <div class="tooltip-title">
+                            <div class="title-content">
+                                ${feature.name}
+                            </div>
                         </div>
-                        <span class="plugin-tag ${feature.category === 'basic' ? 'info' : 'warning'}">
-                            ${feature.category === 'basic' ? 'Aligned Plugins' : 'Agnostic Plugins'}
-                        </span>
+                        <div class="tooltip-description">${feature.description || '提供系统基础运行环境和核心服务支持'}</div>
                     </div>
-                    <div class="tooltip-description">${feature.description}</div>
-                </div>
-                <div class="tooltip-body">
-                    <div class="plugins-section">
-                        <div class="plugins-section-title">
-                            <i class="fas fa-puzzle-piece me-2"></i>依赖插件
-                        </div>
-                        <div class="plugins-list">
-                            ${pluginsInfo.map(plugin => `
+                    <div class="tooltip-body">
+                        <div class="plugins-section">
+                            <div class="plugins-section-title">
+                                <i class="fas fa-puzzle-piece me-2"></i>包含插件
+                            </div>
+                            <div class="plugins-list">
                                 <div class="plugin-info-item">
                                     <div class="plugin-title-line">
-                                        <span class="plugin-name">${plugin.name}</span>
-                                        <span class="plugin-version">v${plugin.version}</span>
-                                        <span class="plugin-tag ${plugin.category === 'Agnostic Plugins' ? 'warning' : 'info'}">
-                                            ${plugin.category}
-                                        </span>
+                                        <span class="plugin-name">核心运行时</span>
+                                        <span class="plugin-version">v${corePlugin?.version || '4.0.0'}</span>
+                                        <span class="plugin-tag info">Aligned Plugins</span>
                                     </div>
                                     <div class="plugin-description">
-                                        ${plugin.description}
+                                        提供系统组件生命周期管理、动态资源分配回收、高效缓存管理等基础能力
                                     </div>
                                 </div>
-                            `).join('')}
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
+            } else {
+                // 非核心功能的原有提示内容
+                tooltipContent = `
+                    <div class="tooltip-header">
+                        <div class="tooltip-title">
+                            <div class="title-content">
+                                ${feature.name}
+                            </div>
+                        </div>
+                        <div class="tooltip-description">${feature.description}</div>
+                    </div>
+                    <div class="tooltip-body">
+                        <div class="plugins-section">
+                            <div class="plugins-section-title">
+                                <i class="fas fa-puzzle-piece me-2"></i>包含插件
+                            </div>
+                            <div class="plugins-list">
+                                ${pluginsInfo.map(plugin => `
+                                    <div class="plugin-info-item">
+                                        <div class="plugin-title-line">
+                                            <span class="plugin-name">${plugin.name}</span>
+                                            <span class="plugin-version">v${plugin.version}</span>
+                                            <span class="plugin-tag ${plugin.category === 'Agnostic Plugins' ? 'warning' : 'info'}">
+                                                ${plugin.category}
+                                            </span>
+                                        </div>
+                                        <div class="plugin-description">
+                                            ${plugin.description}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
             
             tooltip.html(tooltipContent);
             
