@@ -168,12 +168,11 @@ const plugins = {
 
 // 功能分类
 const categories = {
-    all: '全部产品',
-    basic: '基础平台',
-    container: '容器平台',
-    devops: 'DevOps',
-    microservice: '微服务',
-    data: '数据服务'
+    all: '全部',
+    container: '容器和基础设施',
+    microservice: '微服务治理',
+    data: '数据服务',
+    devops: 'DevOps'
 };
 
 // 添加功能与插件的映射关系
@@ -182,7 +181,7 @@ const featurePluginMapping = {
     coreFeature: {
         name: '核心功能',
         description: '提供系统基础运行环境和核心服务支持',
-        category: 'basic',
+        category: 'container',
         plugins: ['core_runtime', 'core_service'],
         isCore: true
     },
@@ -190,14 +189,33 @@ const featurePluginMapping = {
     basicAuth: {
         name: '认证授权',
         description: '提供统一的身份认证、权限管理和访问控制能力',
-        category: 'basic',
+        category: 'container',
         plugins: ['auth_center', 'rbac_service']
     },
     basicMonitor: {
-        name: 'VM监控',
-        description: '提供虚拟机资源使用监控和性能分析能力',
-        category: 'basic',
-        plugins: ['vm_monitor', 'resource_analyzer']
+        name: '监控',
+        description: '提供系统运行状态监控和性能分析能力',
+        category: 'container',
+        plugins: ['resource_analyzer'],
+        optionalPlugins: {
+            title: '可选插件（任选其一）',
+            plugins: [
+                {
+                    id: 'vm_monitor',
+                    name: 'VM监控插件',
+                    version: '3.0.0',
+                    category: 'Agnostic Plugins',
+                    description: '虚拟机性能指标采集和状态监控'
+                },
+                {
+                    id: 'prometheus_agent',
+                    name: 'Prometheus监控插件',
+                    version: '2.3.0',
+                    category: 'Agnostic Plugins',
+                    description: '采集和暴露符合Prometheus规范的监控指标'
+                }
+            ]
+        }
     },
     // 容器平台
     containerOrchestration: {
@@ -221,7 +239,7 @@ const featurePluginMapping = {
     },
     codeAnalysis: {
         name: '代码分析',
-        description: '提供代码质量检查、漏洞扫描和度量分析���力',
+        description: '提供代码质量检查、漏洞扫描和度量分析能力',
         category: 'devops',
         plugins: ['code_scanner', 'quality_analyzer']
     },
@@ -230,7 +248,8 @@ const featurePluginMapping = {
         name: '服务注册',
         description: '提供服务注册、发现和配置管理能力',
         category: 'microservice',
-        plugins: ['service_registry', 'config_center']
+        plugins: ['service_registry', 'config_center'],
+        dependencies: ['basicAuth']  // 添加对认证授权的依赖
     },
     apiGateway: {
         name: 'API网关',
@@ -1836,41 +1855,108 @@ function handleGenerate() {
         html: `
             <div class="package-info-confirm">
                 <div class="info-section">
-                    <div class="info-item">
+                    <div class="info-row">
                         <span class="info-label">类型：</span>
                         <span class="info-value">自定义</span>
                     </div>
-                    <div class="info-item">
+                    <div class="info-row">
                         <span class="info-label">架构：</span>
                         <span class="info-value">${currentArch.toUpperCase()}</span>
                     </div>
-                    <div class="info-item">
+                    <div class="info-row features-row">
                         <span class="info-label">功能选择：</span>
-                        <div class="info-value feature-list">
-                            ${selectedFeatures.map(feature => `
-                                <div class="selected-item">${feature}</div>
-                            `).join('')}
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">包含插件：</span>
-                        <div class="info-value plugin-list">
-                            ${selectedPlugins.map(plugin => `
-                                <div class="selected-item">${plugin}</div>
-                            `).join('')}
+                        <div class="info-value">
+                            ${selectedFeatures.map(featureName => {
+                                const feature = Object.values(featurePluginMapping).find(f => f.name === featureName);
+                                if (!feature) return '';
+                                
+                                const featurePlugins = getPluginsInfo(feature.plugins);
+                                const optionalPlugin = feature.optionalPlugins?.plugins.find(p => p.id === feature.selectedPlugin);
+                                
+                                return `
+                                    <div class="feature-item">
+                                        <div class="feature-name">
+                                            ${featureName}${feature.isCore ? ' (必选)' : ''}
+                                        </div>
+                                        <div class="feature-plugins">
+                                            <div class="plugin-line">
+                                                <span class="plugin-label">基础组件：</span>
+                                                ${featurePlugins.map(plugin => 
+                                                    `${plugin.name} v${plugin.version}`
+                                                ).join('、')}
+                                            </div>
+                                            ${optionalPlugin ? `
+                                                <div class="plugin-line">
+                                                    <span class="plugin-label">可选插件：</span>
+                                                    ${optionalPlugin.name} v${optionalPlugin.version}
+                                                </div>
+                                            ` : ''}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
                         </div>
                     </div>
                 </div>
             </div>
+            <style>
+                .package-info-confirm {
+                    text-align: left;
+                    padding: 5px;
+                }
+                .info-section {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                }
+                .info-row {
+                    display: flex;
+                    gap: 8px;
+                    font-size: 14px;
+                    min-height: 20px;
+                    align-items: flex-start;
+                }
+                .info-label {
+                    color: #666;
+                    min-width: 70px;
+                    text-align: right;
+                }
+                .info-value {
+                    flex: 1;
+                    color: #333;
+                }
+                .features-row {
+                    align-items: flex-start;
+                }
+                .feature-item {
+                    margin-bottom: 8px;
+                }
+                .feature-item:last-child {
+                    margin-bottom: 0;
+                }
+                .feature-name {
+                    font-weight: 500;
+                    margin-bottom: 2px;
+                }
+                .feature-plugins {
+                    padding-left: 12px;
+                    font-size: 13px;
+                }
+                .plugin-line {
+                    margin-bottom: 2px;
+                    color: #666;
+                }
+                .plugin-label {
+                    color: #999;
+                    display: inline-block;
+                    min-width: 65px;
+                }
+            </style>
         `,
         showCancelButton: true,
         confirmButtonText: '生成',
         cancelButtonText: '取消',
-        width: '600px',
-        customClass: {
-            container: 'package-confirm-dialog',
-            content: 'package-confirm-content'
-        }
+        width: '500px'
     }).then((result) => {
         if (result.isConfirmed) {
             generatePackage();
@@ -2679,26 +2765,173 @@ function handleDownload() {
 
 // 修改功能选择的事件处理
 function bindFeatureEvents() {
-    $('.feature-checkbox').change(function() {
+    $('.feature-checkbox').change(function(e) {
         if (currentPackageType === 'custom') {
             const featureItem = $(this).closest('.feature-item');
             const featureId = $(this).val();
             const isChecked = $(this).prop('checked');
-            const featureName = featurePluginMapping[featureId].name;
+            const feature = featurePluginMapping[featureId];
             
-            // 只更新选中状态，不改变排序
+            // 如果是监控功能，需要特殊处理
+            if (featureId === 'basicMonitor') {
+                if (isChecked) {
+                    e.preventDefault();
+                    $(this).prop('checked', false);
+                    showMonitorPluginSelector(featureId, featureItem);
+                    return;
+                } else {
+                    featureItem.removeClass('selected');
+                    updateSelectedFeatures(featureId, feature.name, false);
+                    updateRelatedPlugins(featureId, false);
+                    return;
+                }
+            }
+            
+            // 处理依赖关系
+            if (isChecked) {
+                // 选中当前功能时，同时选中其依赖的功能
+                if (feature.dependencies) {
+                    feature.dependencies.forEach(depId => {
+                        const depCheckbox = $(`.feature-checkbox[value="${depId}"]`);
+                        const depFeature = featurePluginMapping[depId];
+                        depCheckbox.prop('checked', true).prop('disabled', true);
+                        depCheckbox.closest('.feature-item').addClass('selected dependency-locked');
+                        updateSelectedFeatures(depId, depFeature.name, true);
+                        updateRelatedPlugins(depId, true);
+                    });
+                }
+            } else {
+                // 取消选中时，检查是否有其他功能依赖于当前功能
+                const hasDependents = Object.entries(featurePluginMapping).some(([id, f]) => 
+                    f.dependencies?.includes(featureId) && 
+                    $(`.feature-checkbox[value="${id}"]`).prop('checked')
+                );
+                
+                if (hasDependents) {
+                    e.preventDefault();
+                    $(this).prop('checked', true);
+                    Swal.fire({
+                        title: '无法取消选择',
+                        text: '其他已选功能依赖于此功能，请先取消选择依赖此功能的其他功能',
+                        icon: 'warning',
+                        confirmButtonText: '确定'
+                    });
+                    return;
+                }
+                
+                // 如果没有其他功能依赖，则允许取消选中
+                // 同时解除对其依赖功能的锁定
+                if (feature.dependencies) {
+                    feature.dependencies.forEach(depId => {
+                        const depCheckbox = $(`.feature-checkbox[value="${depId}"]`);
+                        const depFeature = featurePluginMapping[depId];
+                        // 检查是否还有其他已选功能依赖于此依赖功能
+                        const hasOtherDependents = Object.entries(featurePluginMapping).some(([id, f]) => 
+                            id !== featureId && 
+                            f.dependencies?.includes(depId) && 
+                            $(`.feature-checkbox[value="${id}"]`).prop('checked')
+                        );
+                        
+                        if (!hasOtherDependents) {
+                            depCheckbox.prop('disabled', false);
+                            depCheckbox.closest('.feature-item').removeClass('dependency-locked');
+                        }
+                    });
+                }
+            }
+            
             featureItem.toggleClass('selected', isChecked);
-            
-            // 更新选中功能展示区域
-            updateSelectedFeatures(featureId, featureName, isChecked);
-            
-            // 更新相关插件
+            updateSelectedFeatures(featureId, feature.name, isChecked);
             updateRelatedPlugins(featureId, isChecked);
         }
     });
 }
 
-// 更新选中功能展示区域
+// 添加显示监控插件选择器的函数
+function showMonitorPluginSelector(featureId, featureItem) {
+    const feature = featurePluginMapping[featureId];
+    
+    Swal.fire({
+        title: '选择可选插件',
+        html: `
+            <div class="monitor-plugin-selector">
+                <div class="plugins-section">
+                    <div class="plugins-section-title mb-3">
+                        <i class="fas fa-random me-2"></i>${feature.optionalPlugins.title}
+                    </div>
+                    <div class="plugins-list">
+                        ${feature.optionalPlugins.plugins.map(plugin => `
+                            <div class="plugin-info-item optional-plugin mb-3" data-plugin-id="${plugin.id}">
+                                <div class="plugin-title-line">
+                                    <div class="form-check">
+                                        <input class="form-check-input optional-plugin-radio" 
+                                               type="radio" 
+                                               name="monitorPlugin" 
+                                               id="${plugin.id}_select"
+                                               value="${plugin.id}">
+                                        <label class="form-check-label" for="${plugin.id}_select">
+                                            <span class="plugin-name">${plugin.name}</span>
+                                            <span class="plugin-version">v${plugin.version}</span>
+                                            <span class="plugin-tag ${plugin.category === 'Agnostic Plugins' ? 'warning' : 'info'}">
+                                                ${plugin.category}
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="plugin-description mt-2">
+                                    ${plugin.description}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: '确认',
+        cancelButtonText: '取消',
+        customClass: {
+            container: 'monitor-plugin-dialog'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const selectedPluginId = $('.optional-plugin-radio:checked').val();
+            if (selectedPluginId) {
+                // 更新选中状态
+                updateMonitorPluginSelection(selectedPluginId);
+                
+                // 选中功能复选框
+                const checkbox = featureItem.find('.feature-checkbox');
+                checkbox.prop('checked', true);
+                
+                // 更新功能选择状态
+                featureItem.addClass('selected');
+                updateSelectedFeatures(featureId, feature.name, true);
+                updateRelatedPlugins(featureId, true);
+            }
+        }
+    });
+}
+
+// 修改updateMonitorPluginSelection函数
+function updateMonitorPluginSelection(selectedPluginId) {
+    const feature = featurePluginMapping.basicMonitor;
+    if (feature && feature.optionalPlugins) {
+        feature.selectedPlugin = selectedPluginId;
+        
+        // 更新已选功能标签中的显示
+        const selectedPlugin = feature.optionalPlugins.plugins.find(p => p.id === selectedPluginId);
+        if (selectedPlugin) {
+            const featureTag = $(`.selected-feature-tag[data-feature-id="basicMonitor"]`);
+            if (featureTag.length) {
+                featureTag.find('.selected-plugin').remove();
+                featureTag.append(`<span class="selected-plugin">(${selectedPlugin.name})</span>`);
+            }
+        }
+    }
+}
+
+// 修改updateSelectedFeatures函数
 function updateSelectedFeatures(featureId, featureName, isChecked) {
     const selectedFeaturesContainer = $('.selected-features');
     const feature = featurePluginMapping[featureId];
@@ -2707,25 +2940,32 @@ function updateSelectedFeatures(featureId, featureName, isChecked) {
         // 如果是核心功能，先检查是否已存在
         if (feature?.isCore) {
             if (selectedFeaturesContainer.find(`[data-feature-id="${featureId}"]`).length > 0) {
-                return; // 如果已存在，则不重复加
+                return;
             }
         }
         
         // 添加功能标签
-        const featureTag = `
+        let featureTag = `
             <div class="selected-feature-tag" data-feature-id="${featureId}">
                 ${featureName}
+                ${featureId === 'basicMonitor' && feature.selectedPlugin ? `
+                    <span class="selected-plugin">
+                        (${feature.optionalPlugins.plugins.find(p => p.id === feature.selectedPlugin)?.name || ''})
+                    </span>
+                ` : ''}
                 ${!feature?.isCore ? '<span class="remove-tag">&times;</span>' : ''}
             </div>
         `;
+        
         selectedFeaturesContainer.append(featureTag);
         
         // 只为非核心功能绑定删除事件
         if (!feature?.isCore) {
             selectedFeaturesContainer.find(`.selected-feature-tag[data-feature-id="${featureId}"] .remove-tag`)
                 .click(function() {
-                    $(`#feature_${featureId}`).prop('checked', false).trigger('change');
-                    $(this).closest('.selected-feature-tag').remove();
+                    // 直接取消选中对应的复选框
+                    const checkbox = $(`#feature_${featureId}`);
+                    checkbox.prop('checked', false).trigger('change');
                 });
         }
     } else {
@@ -2819,10 +3059,65 @@ function createPluginCard(plugin) {
     `;
 }
 
-// 更新功能选择区域的HTML
+// 修改生成索引的函数
+function generateFeatureIndex() {
+    const tags = {
+        'dev_tools': '开发者工具',
+        'data_service': '数据服务',
+        'security': '安全',
+        'big_data': '大数据',
+        'database': '数据库',
+        'monitor': '监控',
+        'network': '网络',
+        'storage': '存储',
+        'ai': '人工智能',
+        'others': '其他'
+    };
+
+    // 为每个功能添加标签属性
+    Object.entries(featurePluginMapping).forEach(([id, feature]) => {
+        // 这里根据功能特点分配标签，可以根据实际需求调整
+        switch(id) {
+            case 'cicd':
+            case 'codeAnalysis':
+                feature.tag = 'dev_tools';
+                break;
+            case 'dataProcessing':
+                feature.tag = 'data_service';
+                break;
+            case 'basicAuth':
+                feature.tag = 'security';
+                break;
+            case 'basicMonitor':
+            case 'containerMonitor':
+                feature.tag = 'monitor';
+                break;
+            case 'containerOrchestration':
+            case 'apiGateway':
+                feature.tag = 'network';
+                break;
+            case 'serviceRegistry':
+                feature.tag = 'dev_tools';
+                break;
+            default:
+                feature.tag = 'others';
+        }
+    });
+
+    // 获取已使用的标签
+    const usedTags = new Set(Object.values(featurePluginMapping).map(f => f.tag));
+
+    return Object.entries(tags).map(([key, name]) => ({
+        key,
+        name,
+        active: usedTags.has(key)
+    }));
+}
+
+// 修改更新功能选择区域的HTML
 function updateFeaturesSection() {
     const featuresSection = $('.features-selector');
-    const alphabetIndex = generateAlphabetIndex();
+    const featureIndex = generateFeatureIndex();
     
     let html = `
         <div class="features-header">
@@ -2841,9 +3136,11 @@ function updateFeaturesSection() {
             </div>
             <div class="col-md-10">
                 <div class="index-search-container">
-                    <div class="alphabet-index">
-                        ${alphabetIndex.map(({letter, active}) => `
-                            <span class="letter ${active ? '' : 'disabled'}">${letter}</span>
+                    <div class="feature-tags">
+                        ${featureIndex.map(({key, name, active}) => `
+                            <span class="feature-tag ${active ? '' : 'disabled'}" data-tag="${key}">
+                                ${name}
+                            </span>
                         `).join('')}
                     </div>
                     <div class="features-search">
@@ -2853,7 +3150,10 @@ function updateFeaturesSection() {
                 </div>
                 <div class="features-grid">
                     ${Object.entries(featurePluginMapping).map(([id, feature]) => `
-                        <div class="feature-item ${feature.isCore ? 'core-feature' : ''}" data-category="${feature.category}" data-id="${id}">
+                        <div class="feature-item ${feature.isCore ? 'core-feature' : ''}" 
+                             data-category="${feature.category}" 
+                             data-tag="${feature.tag}"
+                             data-id="${id}">
                             <div class="form-check d-flex align-items-center">
                                 <input class="form-check-input feature-checkbox" 
                                        type="checkbox" 
@@ -2877,11 +3177,53 @@ function updateFeaturesSection() {
     
     featuresSection.html(html);
     
+    // 添加标签样式
+    const tagStyle = `
+        <style>
+            .feature-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-bottom: 16px;
+            }
+            .feature-tag {
+                padding: 4px 12px;
+                border-radius: 16px;
+                background-color: #f8f9fa;
+                color: #666;
+                font-size: 13px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                border: 1px solid #dee2e6;
+            }
+            .feature-tag:not(.disabled):hover {
+                background-color: #e9ecef;
+                color: #333;
+            }
+            .feature-tag.active {
+                background-color: #e7f1ff;
+                color: #0d6efd;
+                border-color: #0d6efd;
+            }
+            .feature-tag.disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        </style>
+    `;
+    
+    if (!$('#feature-tag-styles').length) {
+        $('head').append(tagStyle);
+    }
+    
     // 绑定搜索功能
     bindSearchFeature();
     
     // 绑定功能提示事件
     bindFeatureInfoEvents();
+    
+    // 绑定标签点击事件
+    bindTagClickEvents();
 }
 
 // 绑定搜索功能
@@ -2965,8 +3307,8 @@ function bindFeatureInfoEvents() {
             // 生成提示内容
             let tooltipContent;
             if (feature.isCore) {
-                // 核心功能的提示内容，保持与其他功能一致的样式
-                const corePlugin = pluginsInfo[0]; // 获取第一个核心插件
+                // 核心功能的提示内容
+                const corePlugin = pluginsInfo[0];
                 tooltipContent = `
                     <div class="tooltip-header">
                         <div class="tooltip-title">
@@ -2979,7 +3321,7 @@ function bindFeatureInfoEvents() {
                     <div class="tooltip-body">
                         <div class="plugins-section">
                             <div class="plugins-section-title">
-                                <i class="fas fa-puzzle-piece me-2"></i>包含插件
+                                <i class="fas fa-puzzle-piece me-2"></i>基础组件
                             </div>
                             <div class="plugins-list">
                                 <div class="plugin-info-item">
@@ -2996,8 +3338,8 @@ function bindFeatureInfoEvents() {
                         </div>
                     </div>
                 `;
-            } else {
-                // 非核心功能的原有提示内容
+            } else if (featureId === 'basicMonitor') {
+                // 监控功能的特殊提示内容
                 tooltipContent = `
                     <div class="tooltip-header">
                         <div class="tooltip-title">
@@ -3010,7 +3352,75 @@ function bindFeatureInfoEvents() {
                     <div class="tooltip-body">
                         <div class="plugins-section">
                             <div class="plugins-section-title">
-                                <i class="fas fa-puzzle-piece me-2"></i>包含插件
+                                <i class="fas fa-puzzle-piece me-2"></i>基础组件
+                            </div>
+                            <div class="plugins-list">
+                                <div class="plugin-info-item">
+                                    <div class="plugin-title-line">
+                                        <span class="plugin-name">运维核心套件</span>
+                                        <span class="plugin-version">v2.0.0</span>
+                                        <span class="plugin-tag info">Aligned Plugins</span>
+                                    </div>
+                                    <div class="plugin-description">
+                                        系统资源使用分析和优化建议
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plugins-section mt-3">
+                            <div class="plugins-section-title">
+                                <i class="fas fa-random me-2"></i>${feature.optionalPlugins.title}
+                            </div>
+                            <div class="plugins-list">
+                                ${feature.optionalPlugins.plugins.map(plugin => `
+                                    <div class="plugin-info-item optional-plugin" data-plugin-id="${plugin.id}">
+                                        <div class="plugin-title-line">
+                                            <div class="form-check">
+                                                <input class="form-check-input optional-plugin-radio" 
+                                                       type="radio" 
+                                                       name="monitorPlugin" 
+                                                       id="${plugin.id}_radio"
+                                                       value="${plugin.id}">
+                                                <label class="form-check-label" for="${plugin.id}_radio">
+                                                    <span class="plugin-name">${plugin.name}</span>
+                                                    <span class="plugin-version">v${plugin.version}</span>
+                                                    <span class="plugin-tag ${plugin.category === 'Agnostic Plugins' ? 'warning' : 'info'}">
+                                                        ${plugin.category}
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="plugin-description">
+                                            ${plugin.description}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // 其他功能的提示内容
+                tooltipContent = `
+                    <div class="tooltip-header">
+                        <div class="tooltip-title">
+                            <div class="title-content">
+                                ${feature.name}
+                                ${feature.dependencies ? `
+                                    <div class="dependencies-badge">
+                                        <i class="fas fa-link me-1"></i>依赖功能：${feature.dependencies.map(depId => 
+                                            featurePluginMapping[depId].name
+                                        ).join('、')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                        <div class="tooltip-description">${feature.description}</div>
+                    </div>
+                    <div class="tooltip-body">
+                        <div class="plugins-section">
+                            <div class="plugins-section-title">
+                                <i class="fas fa-puzzle-piece me-2"></i>基础组件
                             </div>
                             <div class="plugins-list">
                                 ${pluginsInfo.map(plugin => `
@@ -3055,6 +3465,14 @@ function bindFeatureInfoEvents() {
                     }, 200);
                 }
             );
+
+            // 为监控功能的可选插件添加选择事件
+            if (featureId === 'basicMonitor') {
+                $('.optional-plugin-radio').change(function() {
+                    const selectedPluginId = $(this).val();
+                    updateMonitorPluginSelection(selectedPluginId);
+                });
+            }
         },
         function() {
             tooltipTimeout = setTimeout(() => {
@@ -3362,5 +3780,76 @@ function initializeClipboard() {
             btn.html(originalHtml);
         }, 1500);
         e.clearSelection();
+    });
+}
+
+// 添加新函数：更新监控插件选择
+function updateMonitorPluginSelection(selectedPluginId) {
+    // 更新插件状态
+    const feature = featurePluginMapping.basicMonitor;
+    if (feature && feature.optionalPlugins) {
+        feature.selectedPlugin = selectedPluginId;
+    }
+    
+    // 如果需要，可以在这里添加其他更新逻辑
+}
+
+// 添加新的样式
+const newStyles = `
+    <style>
+        .dependencies-badge {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        .dependency-locked {
+            position: relative;
+        }
+        .dependency-locked::after {
+            content: '被依赖';
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            font-size: 12px;
+            color: #666;
+            background-color: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+    </style>
+`;
+
+// 将新样式添加到页面
+if (!$('#feature-dependency-styles').length) {
+    $('head').append(newStyles);
+}
+
+// 添加标签点击事件处理
+function bindTagClickEvents() {
+    $('.feature-tag').click(function() {
+        if (!$(this).hasClass('disabled')) {
+            const tag = $(this).data('tag');
+            
+            // 如果当前标签已经是高亮状态，则清除筛选和高亮
+            if ($(this).hasClass('active')) {
+                $('.feature-tag').removeClass('active');
+                $('.feature-item').removeClass('d-none');
+            } else {
+                // 移除其他标签的高亮
+                $('.feature-tag').removeClass('active');
+                // 高亮当前标签
+                $(this).addClass('active');
+                // 筛选功能
+                filterFeaturesByTag(tag);
+            }
+        }
+    });
+}
+
+// 添加按标签筛选功能
+function filterFeaturesByTag(tag) {
+    $('.feature-item').each(function() {
+        const featureTag = $(this).data('tag');
+        $(this).toggleClass('d-none', featureTag !== tag);
     });
 }

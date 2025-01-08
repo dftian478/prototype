@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum - 量子计算学习与交流社区</title>
+    <!-- 本地库引用（优先） -->
+    <link rel="stylesheet" href="assets/lib/bootstrap.min.css">
+    <!-- CDN备选引用 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          onerror="this.onerror=null;this.href='assets/lib/bootstrap.min.css';">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css"
+          onerror="this.onerror=null;this.href='assets/lib/fontawesome-free.min.css';">
+    <!-- 全局样式 -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- 在 head 中添加图标库 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-atom"></i> Quantum</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-home"></i> 首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/learning/"><i class="fas fa-graduation-cap"></i> 学习中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/community/"><i class="fas fa-users"></i> 社区互动</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/events/"><i class="fas fa-calendar-alt"></i> 活动中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/resources/"><i class="fas fa-book"></i> 资源中心</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="pages/auth/login.html" class="btn btn-outline-light me-2">登录</a>
+                    <a href="pages/auth/register.html" class="btn btn-primary">注册</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 头部横幅 -->
+        <section class="hero-section text-center text-light">
+            <div class="particles-bg" id="particles-js"></div>
+            <div class="container position-relative">
+                <div class="row align-items-center min-vh-75">
+                    <div class="col-lg-8 mx-auto">
+                        <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInUp">
+                            探索量子计算的无限可能
+                        </h1>
+                        <p class="lead mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+                            加入全球最大的量子计算学习与交流社区，与数千名量子计算爱好者一起成长
+                        </p>
+                        <div class="d-flex justify-content-center gap-3 animate__animated animate__fadeInUp animate__delay-2s">
+                            <a href="pages/learning/getting-started.html" class="btn btn-lg btn-primary">
+                                <i class="fas fa-rocket"></i> 开始学习
+                            </a>
+                            <a href="#features" class="btn btn-lg btn-outline-light">
+                                <i class="fas fa-play"></i> 观看介绍
+                            </a>
+                        </div>
+                        <div class="mt-5 stats-container animate__animated animate__fadeInUp animate__delay-3s">
+                            <div class="row g-4 justify-content-center">
+                                <div class="col-md-4">
+                                    <div class="stat-item">
+                                        <h3 class="counter">50,000+</h3>
+                                        <p>活跃学习者</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stat-item">
+                                        <h3 class="counter">1,000+</h3>
+                                        <p>精品课程</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stat-item">
+                                        <h3 class="counter">200+</h3>
+                                        <p>专家讲师</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 添加特色功能展示区 -->
+        <section class="features-section py-5" id="features">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">为什么选择 Quantum？</h2>
+                    <p class="section-subtitle">全方位的量子计算学习解决方案</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>系统化学习路径</h4>
+                            <p>从入门到精通的完整课程体系</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>活跃的学习社区</h4>
+                            <p>与全球量子计算爱好者交流</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h4>实践驱动</h4>
+                            <p>在线编程环境，即学即练</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心内容区 -->
+        <div class="container my-5">
+            <!-- 内容区标题 -->
+            <div class="section-header text-center mb-5 animate__animated animate__fadeIn">
+                <span class="section-badge">探索发现</span>
+                <h2 class="section-title">量子世界的最新动态</h2>
+                <p class="section-subtitle">发现前沿科技资讯，参与精彩社区讨论</p>
+            </div>
+
+            <!-- 最新动态和技术文章 -->
+            <div class="content-grid mb-5">
+                <div class="main-content animate__animated animate__fadeInLeft">
+                    <div class="content-section latest-news">
+                        <div class="section-header">
+                            <div class="header-main">
+                                <div class="icon-wrapper gradient-news">
+                                    <i class="ri-flashlight-line"></i>
+                                </div>
+                                <div>
+                                    <h3>最新动态</h3>
+                                    <p class="header-desc">量子计算领域的前沿资讯</p>
+                                </div>
+                            </div>
+                            <a href="pages/news/" class="btn-link">
+                                查看更多 <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="news-grid" id="latestNews">
+                            <!-- 动态内容将通过JavaScript加载 -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="side-content animate__animated animate__fadeInRight">
+                    <div class="content-section featured-articles">
+                        <div class="section-header">
+                            <div class="header-main">
+                                <div class="icon-wrapper gradient-article">
+                                    <i class="ri-award-line"></i>
+                                </div>
+                                <div>
+                                    <h3>精选文章</h3>
+                                    <p class="header-desc">深度技术文章精选</p>
+                                </div>
+                            </div>
+                            <a href="pages/articles/" class="btn-link">
+                                更多文章 <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="articles-list" id="featuredArticles">
+                            <!-- 文章列表将通过JavaScript加载 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 活动和讨论区域 -->
+            <div class="content-grid-equal mb-5">
+                <div class="content-section events animate__animated animate__fadeInUp">
+                    <div class="section-header">
+                        <div class="header-main">
+                            <div class="icon-wrapper gradient-event">
+                                <i class="ri-calendar-event-line"></i>
+                            </div>
+                            <div>
+                                <h3>近期活动</h3>
+                                <p class="header-desc">线上线下活动日历</p>
+                            </div>
+                        </div>
+                        <a href="pages/events/" class="btn-link">
+                            全部活动 <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="events-list" id="upcomingEvents">
+                        <!-- 活动列表将通过JavaScript加载 -->
+                    </div>
+                </div>
+
+                <div class="content-section discussions animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="section-header">
+                        <div class="header-main">
+                            <div class="icon-wrapper gradient-discussion">
+                                <i class="ri-discuss-line"></i>
+                            </div>
+                            <div>
+                                <h3>热门讨论</h3>
+                                <p class="header-desc">社区热点话题</p>
+                            </div>
+                        </div>
+                        <a href="pages/community/discussions/" class="btn-link">
+                            进入论坛 <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="discussions-list" id="hotTopics">
+                        <!-- 讨论话题将通过JavaScript加载 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 学习路径和实践专区 -->
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="content-section">
+                        <div class="section-header">
+                            <div class="header-main">
+                                <div class="icon-wrapper gradient-path">
+                                    <i class="ri-road-map-line"></i>
+                                </div>
+                                <div>
+                                    <h3>学习路径</h3>
+                                    <p class="header-desc">系统化的学习计划</p>
+                                </div>
+                            </div>
+                            <a href="pages/learning/paths/" class="btn-link">
+                                查看详情 <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="learning-paths">
+                            <div class="list-item">
+                                <div class="path-content">
+                                    <h6><i class="ri-seedling-line text-success"></i> 入门级</h6>
+                                    <p>量子计算基础概念与原理</p>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="path-content">
+                                    <h6><i class="ri-plant-line text-primary"></i> 进阶级</h6>
+                                    <p>量子算法与编程实践</p>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="path-content">
+                                    <h6><i class="ri-mountains-line text-danger"></i> 专家级</h6>
+                                    <p>前沿研究与项目开发</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="content-section">
+                        <div class="section-header">
+                            <div class="header-main">
+                                <div class="icon-wrapper gradient-practice">
+                                    <i class="ri-code-box-line"></i>
+                                </div>
+                                <div>
+                                    <h3>实践专区</h3>
+                                    <p class="header-desc">在线编程与项目实践</p>
+                                </div>
+                            </div>
+                            <a href="pages/practice/" class="btn-link">
+                                开始实践 <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="practice-grid">
+                            <div class="list-item practice-card">
+                                <div class="practice-icon">
+                                    <i class="ri-terminal-line"></i>
+                                </div>
+                                <div class="practice-content">
+                                    <h6>在线编程环境</h6>
+                                    <p>实时编码，即时运行</p>
+                                </div>
+                            </div>
+                            <div class="list-item practice-card">
+                                <div class="practice-icon">
+                                    <i class="ri-code-line"></i>
+                                </div>
+                                <div class="practice-content">
+                                    <h6>代码示例库</h6>
+                                    <p>经典算法示例</p>
+                                </div>
+                            </div>
+                            <div class="list-item practice-card">
+                                <div class="practice-icon">
+                                    <i class="ri-flask-line"></i>
+                                </div>
+                                <div class="practice-content">
+                                    <h6>量子算法实验室</h6>
+                                    <p>算法设计与测试</p>
+                                </div>
+                            </div>
+                            <div class="list-item practice-card">
+                                <div class="practice-icon">
+                                    <i class="ri-git-branch-line"></i>
+                                </div>
+                                <div class="practice-content">
+                                    <h6>项目展示区</h6>
+                                    <p>优秀项目案例</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5><i class="fas fa-atom"></i> Quantum</h5>
+                    <p class="text-muted">全球领先的量子计算学习与交流平台</p>
+                    <div class="social-links">
+                        <a href="#" class="me-2"><i class="fab fa-github"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <h6>快速链接</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="pages/about/">关于我们</a></li>
+                        <li><a href="pages/contact/">联系我们</a></li>
+                        <li><a href="pages/help/">帮助中心</a></li>
+                        <li><a href="pages/terms/">服务条款</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <h6>学习资源</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="pages/learning/courses/">在线课程</a></li>
+                        <li><a href="pages/learning/tutorials/">教程指南</a></li>
+                        <li><a href="pages/learning/papers/">论文解读</a></li>
+                        <li><a href="pages/learning/tools/">开发工具</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <h6>社区</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="pages/community/forum/">技术论坛</a></li>
+                        <li><a href="pages/community/blog/">技术博客</a></li>
+                        <li><a href="pages/community/events/">活动日历</a></li>
+                        <li><a href="pages/community/jobs/">招聘信息</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <h6>更多</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="pages/partners/">合作伙伴</a></li>
+                        <li><a href="pages/sponsors/">赞助商</a></li>
+                        <li><a href="pages/press/">媒体报道</a></li>
+                        <li><a href="pages/newsletter/">订阅简报</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center text-muted">
+                <small>&copy; 2024 Quantum. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 本地库引用（优先） -->
+    <script src="assets/lib/bootstrap.bundle.min.js"></script>
+    <!-- CDN备选引用 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            onerror="this.onerror=null;this.src='assets/lib/bootstrap.bundle.min.js';"></script>
+    <!-- 主脚本 -->
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80 },
+                color: { value: '#ffffff' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#ffffff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
