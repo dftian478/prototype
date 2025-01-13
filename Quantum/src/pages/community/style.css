@@ -1,0 +1,114 @@
+.navbar {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    padding: 1rem 0;
+}
+
+.community-banner {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    padding: 4rem 0;
+    margin-bottom: 2rem;
+}
+
+.community-banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.community-banner p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.community-banner img {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.post-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category-filter .btn-group {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+}
+
+.post-meta i {
+    font-size: 0.875rem;
+}
+
+.badge {
+    font-weight: 500;
+    padding: 0.5em 1em;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 3rem 0;
+    margin-top: 4rem;
+}
+
+.footer h5 {
+    color: #2563eb;
+    margin-bottom: 1.5rem;
+}
+
+.footer a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer a:hover {
+    color: #2563eb;
+}
+
+.footer i {
+    width: 20px;
+    color: #2563eb;
+}
+
+@media (max-width: 768px) {
+    .community-banner {
+        padding: 3rem 0;
+    }
+
+    .community-banner h1 {
+        font-size: 2rem;
+    }
+
+    .post-card .d-flex {
+        flex-direction: column;
+    }
+    
+    .post-card .text-end {
+        text-align: left !important;
+        margin-top: 1rem;
+        margin-left: 0 !important;
+    }
+    
+    .category-filter .btn-group {
+        width: 100%;
+    }
+    
+    .category-filter .btn {
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+} 

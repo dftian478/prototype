@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源中心 - 玻色量子</title>
+    <!-- 本地库引用（优先） -->
+    <link rel="stylesheet" href="../../assets/lib/bootstrap.min.css">
+    <!-- CDN备选引用 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          onerror="this.onerror=null;this.href='../../assets/lib/bootstrap.min.css';">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css"
+          onerror="this.onerror=null;this.href='../../assets/lib/fontawesome-free.min.css';">
+    <!-- 全局样式 -->
+    <link rel="stylesheet" href="../../style.css">
+    <!-- 导航栏组件样式 -->
+    <link rel="stylesheet" href="../../components/navbar/style.css">
+    <!-- 页面样式 -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- 导航栏组件 -->
+    <div id="navbar-container">
+        <header class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../../index.html"><i class="fas fa-atom"></i> 玻色量子</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../index.html"><i class="fas fa-home"></i> 首页</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../learning/index.html"><i class="fas fa-graduation-cap"></i> 学习中心</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../community/index.html"><i class="fas fa-users"></i> 社区互动</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../events/index.html"><i class="fas fa-calendar-alt"></i> 活动中心</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../resources/index.html"><i class="fas fa-book"></i> 资源中心</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a href="../auth/login/index.html" class="btn btn-outline-light me-2">登录</a>
+                        <a href="../auth/register/index.html" class="btn btn-primary">注册</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- 顶部横幅 -->
+    <div class="resources-banner">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1>量子计算资源中心</h1>
+                    <p>海量优质学习资源，助力您的量子计算之旅</p>
+                    <div class="banner-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>1000+ 学习资源</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-download"></i>
+                            <span>50万+ 资源下载</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+                    <img src="https://source.unsplash.com/random/600x400/?quantum,library" alt="资源中心横幅" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container my-4">
+        <!-- 资源搜索 -->
+        <div class="search-section mb-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="search-box">
+                        <input type="text" class="form-control" placeholder="搜索量子计算资源...">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 资源分类 -->
+        <div class="category-section mb-5">
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    <div class="category-card">
+                        <i class="fas fa-book"></i>
+                        <h3>教程文档</h3>
+                        <p>入门指南和深度教程</p>
+                        <span class="resource-count">328个资源</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="category-card">
+                        <i class="fas fa-code"></i>
+                        <h3>代码示例</h3>
+                        <p>实用的量子程序示例</p>
+                        <span class="resource-count">256个资源</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="category-card">
+                        <i class="fas fa-video"></i>
+                        <h3>视频课程</h3>
+                        <p>专家录制的教学视频</p>
+                        <span class="resource-count">128个资源</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="category-card">
+                        <i class="fas fa-tools"></i>
+                        <h3>开发工具</h3>
+                        <p>量子计算开发套件</p>
+                        <span class="resource-count">64个资源</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 热门资源 -->
+        <section class="mb-5">
+            <div class="section-header">
+                <h2 class="section-title">热门资源</h2>
+                <a href="#" class="btn btn-outline-primary">查看更多</a>
+            </div>
+            <div class="row g-4">
+                <!-- 资源卡片1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card resource-card h-100">
+                        <div class="card-body">
+                            <div class="resource-type">
+                                <i class="fas fa-book"></i>
+                                <span class="badge bg-primary">教程</span>
+                            </div>
+                            <h5 class="card-title">量子计算基础入门指南</h5>
+                            <p class="card-text">从零开始学习量子计算的完整指南，包含理论基础和实践案例...</p>
+                            <div class="resource-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-eye"></i>
+                                    <span>2.5k 阅读</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.8 评分</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="#" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-download"></i> 下载资源
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 资源卡片2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card resource-card h-100">
+                        <div class="card-body">
+                            <div class="resource-type">
+                                <i class="fas fa-code"></i>
+                                <span class="badge bg-success">代码</span>
+                            </div>
+                            <h5 class="card-title">Qiskit量子算法实现示例</h5>
+                            <p class="card-text">包含20个经典量子算法的完整实现代码，附详细注释和说明文档...</p>
+                            <div class="resource-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-eye"></i>
+                                    <span>1.8k 阅读</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.9 评分</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="#" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-download"></i> 下载代码
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 资源卡片3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card resource-card h-100">
+                        <div class="card-body">
+                            <div class="resource-type">
+                                <i class="fas fa-video"></i>
+                                <span class="badge bg-info">视频</span>
+                            </div>
+                            <h5 class="card-title">量子机器学习实战课程</h5>
+                            <p class="card-text">系统讲解量子机器学习算法原理与实现，配套完整代码与习题...</p>
+                            <div class="resource-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-eye"></i>
+                                    <span>3.2k 观看</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.7 评分</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="#" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-play"></i> 开始学习
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 最新资源 -->
+        <section class="mb-5">
+            <div class="section-header">
+                <h2 class="section-title">最新资源</h2>
+                <a href="#" class="btn btn-outline-primary">查看更多</a>
+            </div>
+            <div class="row g-4">
+                <!-- 资源卡片 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card resource-card h-100">
+                        <div class="card-body">
+                            <div class="resource-type">
+                                <i class="fas fa-tools"></i>
+                                <span class="badge bg-warning">工具</span>
+                            </div>
+                            <h5 class="card-title">量子电路可视化工具</h5>
+                            <p class="card-text">直观展示量子电路的运行过程，支持实时编辑和仿真...</p>
+                            <div class="resource-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-eye"></i>
+                                    <span>960 阅读</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.6 评分</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="#" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-download"></i> 立即下载
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>关于我们</h5>
+                    <p>玻色量子是全球领先的量子计算学习与交流平台，致力于推动量子计算技术的普及与发展。</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>快速链接</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../learning/index.html">学习中心</a></li>
+                        <li><a href="../community/index.html">社区互动</a></li>
+                        <li><a href="../resources/index.html">资源中心</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>联系我们</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope"></i> contact@quantum-platform.com</li>
+                        <li><i class="fas fa-phone"></i> +86 10-1234-5678</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2024 玻色量子. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript 依赖 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            onerror="this.onerror=null;this.src='../../assets/lib/bootstrap.bundle.min.js';"></script>
+    <!-- 导航栏组件脚本 -->
+    <script src="../../components/navbar/script.js"></script>
+</body>
+</html> 

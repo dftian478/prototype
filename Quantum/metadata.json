@@ -1,7 +1,7 @@
 {
   "projectName": "玻色量子",
-  "version": "0.1.0",
-  "lastUpdate": "2024-03-19",
+  "version": "0.1.1",
+  "lastUpdate": "2024-03-20",
   "description": "全球领先的量子计算学习与交流平台",
   "components": [
     {
@@ -15,6 +15,42 @@
       "path": "src/components/footer/",
       "description": "网站通用页脚组件",
       "dependencies": []
+    },
+    {
+      "name": "登录表单",
+      "path": "src/components/login-form/",
+      "description": "用户登录表单组件",
+      "dependencies": []
+    },
+    {
+      "name": "注册表单",
+      "path": "src/components/register-form/",
+      "description": "用户注册表单组件",
+      "dependencies": []
+    },
+    {
+      "name": "帖子卡片",
+      "path": "src/components/post-card/",
+      "description": "社区帖子展示卡片",
+      "dependencies": []
+    },
+    {
+      "name": "评论列表",
+      "path": "src/components/comment-list/",
+      "description": "帖子评论列表组件",
+      "dependencies": []
+    },
+    {
+      "name": "活动卡片",
+      "path": "src/components/event-card/",
+      "description": "活动信息展示卡片",
+      "dependencies": []
+    },
+    {
+      "name": "资源卡片",
+      "path": "src/components/resource-card/",
+      "description": "学习资源展示卡片",
+      "dependencies": []
     }
   ],
   "pages": [
@@ -25,6 +61,18 @@
       "components": ["导航栏", "页脚"]
     },
     {
+      "name": "登录",
+      "path": "src/pages/auth/login.html",
+      "description": "用户登录页面",
+      "components": ["导航栏", "页脚", "登录表单"]
+    },
+    {
+      "name": "注册",
+      "path": "src/pages/auth/register.html",
+      "description": "用户注册页面",
+      "components": ["导航栏", "页脚", "注册表单"]
+    },
+    {
       "name": "学习中心",
       "path": "src/pages/learning/",
       "description": "量子计算学习资源中心",
@@ -32,21 +80,39 @@
     },
     {
       "name": "社区互动",
-      "path": "src/pages/community/",
+      "path": "src/pages/community/index.html",
       "description": "用户交流和讨论平台",
+      "components": ["导航栏", "页脚", "帖子卡片", "评论列表"]
+    },
+    {
+      "name": "发布帖子",
+      "path": "src/pages/community/create-post.html",
+      "description": "发布新帖子页面",
       "components": ["导航栏", "页脚"]
+    },
+    {
+      "name": "帖子详情",
+      "path": "src/pages/community/post-detail.html",
+      "description": "帖子详情页面",
+      "components": ["导航栏", "页脚", "帖子卡片", "评论列表"]
     },
     {
       "name": "活动中心",
-      "path": "src/pages/events/",
+      "path": "src/pages/events/index.html",
       "description": "线上线下活动信息",
-      "components": ["导航栏", "页脚"]
+      "components": ["导航栏", "页脚", "活动卡片"]
+    },
+    {
+      "name": "活动详情",
+      "path": "src/pages/events/event-detail.html",
+      "description": "活动详细信息页面",
+      "components": ["导航栏", "页脚", "活动卡片"]
     },
     {
       "name": "资源中心",
-      "path": "src/pages/resources/",
+      "path": "src/pages/resources/index.html",
       "description": "量子计算相关资源和工具",
-      "components": ["导航栏", "页脚"]
+      "components": ["导航栏", "页脚", "资源卡片"]
     }
   ],
   "features": {

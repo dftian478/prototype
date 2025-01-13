@@ -42,6 +42,7 @@ project-root/                 # 新的项目名称
 1. 使用相对路径引用资源
 2. 包含必要的第三方库（支持本地和CDN双模式）
 3. 引入对应的CSS和JavaScript文件
+4. 链接直接链接到指定的index.html页面。
 
 示例结构：
 ```html
