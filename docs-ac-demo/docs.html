@@ -13,329 +13,6 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-      }
-      .lang-switch {
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        display: flex;
-        background: #fff;
-        border-radius: 4px;
-        padding: 2px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      }
-      .lang-btn {
-        padding: 8px 16px;
-        border: none;
-        background: none;
-        color: #666;
-        cursor: pointer;
-        border-radius: 4px;
-        font-size: 1rem;
-      }
-      .lang-btn.active {
-        background-color: rgb(59, 130, 246);
-        color: white;
-      }
-      .header {
-        text-align: center;
-        padding: 60px 20px;
-        background-color: #fff;
-        color: #333;
-        position: relative;
-      }
-      .header h1 {
-        font-size: 2.5rem;
-        font-weight: 600;
-        margin-bottom: 20px;
-      }
-      .header p {
-        font-size: 1.2rem;
-        color: #666;
-        margin-bottom: 40px;
-        line-height: 1.6;
-      }
-      .search-container {
-        position: relative;
-        max-width: 700px;
-        margin: 0 auto 30px;
-        display: flex;
-        align-items: center;
-      }
-      .version-switcher {
-        margin-right: 1rem;
-      }
-      .form-select {
-        width: 100px;
-      }
-      .search-results {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        border-radius: 4px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        margin-top: 4px;
-        display: none;
-        z-index: 1000;
-      }
-      .search-result-item {
-        padding: 12px 16px;
-        border-bottom: 1px solid #eee;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
-      .search-result-item:last-child {
-        border-bottom: none;
-      }
-      .search-result-item:hover {
-        background-color: #f5f5f5;
-      }
-      .search-result-title {
-        font-weight: 500;
-        color: #333;
-        margin-bottom: 4px;
-      }
-      .search-result-desc {
-        font-size: 0.9em;
-        color: #666;
-      }
-      .products-section {
-        background-image: url('./img/portal-top.png');
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-        padding: 70px 0 100px;
-        margin: 40px 0;
-        position: relative;
-      }
-      .products-section::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 200px;
-        background: linear-gradient(to bottom, transparent, #ffffff);
-        pointer-events: none;
-      }
-      .products-container {
-        position: relative;
-        z-index: 1;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-      .section-title {
-        font-size: 1.8rem;
-        color: #333;
-        margin-bottom: 50px;
-      }
-      .product-card {
-        background-color: rgba(255, 255, 255, 0.95);
-        border-radius: 8px;
-        padding: 25px;
-        text-align: center;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        height: 100%;
-        transition: all 0.2s ease;
-        backdrop-filter: blur(5px);
-      }
-      .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 20px rgba(0,0,0,0.15);
-        background-color: rgba(255, 255, 255, 1);
-      }
-      .product-card img {
-        width: 50px;
-        height: 50px;
-        margin-bottom: 15px;
-      }
-      .product-card h5 {
-        font-size: 1.2rem;
-        color: #333;
-        margin: 15px 0;
-      }
-      .product-card p {
-        font-size: 1rem;
-        color: #666;
-        margin-bottom: 15px;
-        line-height: 1.5;
-      }
-      .version-tag {
-        font-size: 0.85rem;
-        color: #666;
-        margin: 10px 0;
-        padding: 4px 8px;
-        background-color: rgba(0, 0, 0, 0.05);
-        border-radius: 4px;
-        display: inline-block;
-      }
-      [lang="zh"] {
-        display: none;
-      }
-      .zh [lang="zh"] {
-        display: block;
-      }
-      .zh [lang="en"] {
-        display: none;
-      }
-      .footer {
-        background-color: #fff;
-        padding: 30px 0;
-        color: #666;
-        border-top: 1px solid #eee;
-        margin-top: 0;
-      }
-      .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin-bottom: 20px;
-      }
-      .footer-links a {
-        color: #666;
-        text-decoration: none;
-        font-size: 0.9rem;
-      }
-      .footer-links a:hover {
-        color: rgb(59, 130, 246);
-      }
-      .footer-copyright {
-        text-align: center;
-        font-size: 0.8rem;
-        color: #999;
-      }
-      .row.g-4 {
-        --bs-gutter-x: 1.5rem;
-        --bs-gutter-y: 1.5rem;
-        max-width: 1400px;
-        margin: 0 auto;
-      }
-      .view-docs {
-        display: inline-block;
-        padding: 8px 16px;
-        background-color: rgba(59, 130, 246, 0.1);
-        color: rgb(59, 130, 246);
-        border-radius: 4px;
-        margin-top: 15px;
-        font-size: 0.9rem;
-        transition: all 0.2s ease;
-      }
-
-      .product-card:hover .view-docs {
-        background-color: rgb(59, 130, 246);
-        color: white;
-      }
-
-      /* 修改产品标题和版本号的样式 */
-      .product-title {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        margin: 15px 0;
-      }
-
-      .product-title h5 {
-        font-size: 1.2rem;
-        color: #333;
-        margin: 0;
-      }
-
-      .version-tag {
-        font-size: 0.75rem;
-        color: #666;
-        background-color: #f0f0f0;
-        padding: 2px 6px;
-        border-radius: 3px;
-        display: inline-block;
-      }
-
-      /* 移除旧的 h5 样式 */
-      .product-card h5 {
-        margin: 0;
-      }
-
-      /* 添加更多资源区域的样式 */
-      .more-resources {
-        padding: 40px 0;
-        background-color: #fff;
-      }
-
-      .more-resources h2 {
-        font-size: 2rem;
-        color: #333;
-        margin-bottom: 30px;
-        padding-left: 20px;
-      }
-
-      .resource-card {
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        padding: 30px;
-        height: 100%;
-        position: relative;
-        transition: all 0.2s ease;
-        overflow: hidden;
-      }
-
-      .resource-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background-color: #ef4444;  /* 红色上边框 */
-      }
-
-      .resource-card:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transform: translateY(-2px);
-      }
-
-      .resource-card h3 {
-        font-size: 1.5rem;
-        color: #111;
-        margin-bottom: 20px;
-      }
-
-      .resource-card p {
-        color: #4b5563;
-        font-size: 1rem;
-        line-height: 1.6;
-        margin-bottom: 25px;
-      }
-
-      .resource-link {
-        color: #2563eb;
-        text-decoration: none;
-        font-weight: 500;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-      }
-
-      .resource-link:hover {
-        color: #1d4ed8;
-      }
-
-      .resource-link::after {
-        content: '→';
-        transition: transform 0.2s ease;
-      }
-
-      .resource-link:hover::after {
-        transform: translateX(4px);
-      }
-      .release-notes-section .product-card {
-        margin: 0 auto; /* 居中对齐 */
-      }
-      .release-notes-section .row.g-4 {
-        justify-content: center; /* 使卡片居中对齐 */
       }
       .main-header {
         display: flex;
@@ -368,33 +45,282 @@
         color: #333;
       }
 
-      .lang-switch {
-        display: flex;
-        align-items: center;
-        height: 100%;
-        position: static;
-        top: auto;
-        right: auto;
-        box-shadow: none;
-        padding: 0;
-        background: none;
+      /* 左侧导航样式 */
+      .sidebar {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 250px;
+        height: calc(100vh - 60px);
+        background-color: #fff;
+        border-right: 1px solid #eee;
+        padding: 20px;
+        overflow-y: auto;
       }
 
-      .lang-btn {
-        padding: 5px 10px;
+      .version-selector {
+        margin-bottom: 30px;
+      }
+
+      .version-selector h2 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .version-selector select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fff;
+        font-size: 14px;
+      }
+
+      .category-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .category-list h2 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .category-item {
+        padding: 8px 12px;
+        margin-bottom: 4px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: #666;
+      }
+
+      .category-item:hover {
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      .category-item.active {
+        background-color: #007AF5;
+        color: #fff;
+      }
+
+      /* 主内容区域样式 */
+      .main-content {
+        margin-left: 250px;
+        margin-top: 60px;
+        padding: 20px;
+        flex: 1;
+      }
+
+      /* 产品首页样式 */
+      .product-home {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px;
+      }
+
+      .product-header {
+        margin-bottom: 40px;
+        text-align: left;
+      }
+
+      .product-header h1 {
+        font-size: 36px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 16px;
+      }
+
+      .product-header p {
+        font-size: 16px;
+        color: #666;
+        line-height: 1.8;
+      }
+
+      .product-image {
+        width: 100%;
+        max-width: 1000px;
+        margin: 40px auto 0;
+        display: block;
+      }
+
+      .product-content {
+        color: #444;
+        line-height: 1.8;
+      }
+
+      .product-content h2 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        margin: 40px 0 20px;
+      }
+
+      .product-content p {
+        margin-bottom: 16px;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-top: 40px;
+      }
+
+      .feature-item {
+        background: #fff;
+        border-radius: 12px;
+        padding: 24px;
+        border: 1px solid #eee;
+      }
+
+      .feature-item h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+      }
+
+      .feature-item p {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.6;
+      }
+
+      /* 内容区域切换 */
+      .content-section {
+        display: none;
+      }
+
+      .content-section.active {
+        display: block;
+      }
+
+      /* 文章内容样式 */
+      .article-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px;
+      }
+
+      .article-content h1 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 24px;
+        color: #333;
+      }
+
+      .article-content p {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 16px;
+      }
+
+      /* 返回按钮样式 */
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: #f5f5f5;
+        border: none;
+        border-radius: 4px;
+        color: #666;
+        cursor: pointer;
+        margin-bottom: 24px;
+        transition: all 0.2s ease;
+      }
+
+      .back-button:hover {
+        background: #eee;
+        color: #333;
+      }
+
+      .back-button svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* 卡片容器样式 */
+      .cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        padding: 20px;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 24px;
+        transition: all 0.3s ease;
+        border: 1px solid #eee;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-color: #007AF5;
+      }
+
+      .card-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .card-description {
+        color: #666;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+
+      .card-arrow {
+        position: absolute;
+        bottom: 24px;
+        right: 24px;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 122, 245, 0.1);
+        border-radius: 50%;
+        color: #007AF5;
+        transition: all 0.3s ease;
+      }
+
+      .card:hover .card-arrow {
+        background: #007AF5;
+        color: white;
+        transform: translateX(4px);
+      }
+
+      /* 图标样式 */
+      .card-icon {
+        width: 32px;
         height: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
-      }
-
-      .lang-btn.active {
-        background-color: #007AF5;
-        color: white;
-      }
-
-      .header-content {
-        margin-top: 70px; /* 确保内容不被遮挡 */
+        background: rgba(0, 122, 245, 0.1);
+        border-radius: 8px;
+        color: #007AF5;
       }
   </style>
  </head>
@@ -405,262 +331,292 @@
       <span class="divider">|</span>
       <span>Alauda Documentation</span>
     </div>
-    <div class="lang-switch">
-      <button class="lang-btn active" onclick="switchLang('en')" data-lang="en">EN</button>
-      <button class="lang-btn" onclick="switchLang('zh')" data-lang="zh">中文</button>
-    </div>
   </header>
-  <div class="header-content">
-    <div class="header">
-      <h1>
-        <span lang="en">Welcome to Alauda Documentation</span>
-        <span lang="zh">欢迎使用灵雀云文档</span>
-      </h1>
-      <p>
-        <span lang="en">Face business challenges, enable digital transformation, and provide enterprises with a one-stop cloud native platform</span>
-        <span lang="zh">直面业务挑战，助力数字化转型，为企业提供一站式云原生平台</span>
-      </p>
-      <div class="search-container">
-        <div class="version-switcher me-3">
-          <select id="versionSelect" class="form-select" onchange="switchVersion()">
-            <option value="v3.18" selected>v3.18</option>
+
+  <!-- 左侧导航 -->
+  <nav class="sidebar">
+    <div class="version-selector">
+      <h2>Version</h2>
+      <select id="version-select" onchange="handleVersionChange()">
+        <option value="v3.18.1">v3.18.1</option>
+        <option value="v3.18.0">v3.18.0</option>
             <option value="v3.16">v3.16</option>
             <option value="v3.14">v3.14</option>
-            <option value="v3.12">v3.12</option>
-            <option value="v3.10">v3.10</option>
-            <option value="v3.8">v3.8</option>
           </select>
         </div>
-        <div class="input-group">
-          <input class="form-control" placeholder="Search documentation" type="text" onclick="showSearchResults()" id="searchInput"/>
-          <button class="btn btn-primary" type="button">Search</button>
+
+    <div class="category-list">
+      <h2>CATEGORY</h2>
+      <div class="category-item active">ABC</div>
+      <div class="category-item">Platform Center</div>
+      <div class="category-item">Container Platform</div>
+      <div class="category-item">Service Mesh</div>
+      <div class="category-item">DevOps</div>
+      <div class="category-item">Data Services</div>
+    </div>
+  </nav>
+
+  <!-- 主内容区域 -->
+  <main class="main-content">
+    <!-- ABC 卡片列表区域 -->
+    <div class="content-section active" id="abc-section">
+      <div class="cards-container">
+        <!-- Release Notes 卡片 -->
+        <div class="card" onclick="showContent('release-notes')">
+          <div class="card-title">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+              </svg>
         </div>
-        <div class="search-results" id="searchResults">
-          <div class="search-result-item" onclick="window.location.href='https://cloud.alauda.cn/docs/devops-docs/v3.18/zh/devops-initialization/'">
-            <div class="search-result-title">DevOps Initialization</div>
-            <div class="search-result-desc" lang="en">Learn about DevOps platform initialization and configuration</div>
-            <div class="search-result-desc" lang="zh">了解 DevOps 平台初始化和配置</div>
+            Release Notes
           </div>
-          <div class="search-result-item" onclick="window.location.href='https://cloud.alauda.cn/docs/devops-docs/v3.18/zh/devops-initialization/'">
-            <div class="search-result-title">DevOps Setup Guide</div>
-            <div class="search-result-desc" lang="en">Step-by-step guide for setting up DevOps environment</div>
-            <div class="search-result-desc" lang="zh">DevOps 环境配置步骤指南</div>
+          <div class="card-description">查看最新版本的功能更新、问题修复和改进说明</div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Install 卡片 -->
+        <div class="card" onclick="showContent('install')">
+          <div class="card-title">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+              </svg>
+      </div>
+            Install
+    </div>
+          <div class="card-description">了解如何安装和部署产品，包含详细的环境要求和配置说明</div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Upgrade 卡片 -->
+        <div class="card" onclick="showContent('upgrade')">
+          <div class="card-title">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+              </div>
+            Upgrade
+              </div>
+          <div class="card-description">获取版本升级指南，确保顺利完成系统更新和数据迁移</div>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+            </svg>
           </div>
         </div>
       </div>
+              </div>
+
+    <!-- Platform Center 内容 -->
+    <div class="content-section" id="platform-center-section">
+      <div class="product-home">
+        <!-- <div class="product-header">
+          <h1>Welcome to Platform Center</h1>
+          <p>In order to meet the wider enterprise cloud native needs, our company relies on years of technical practice experience serving top customers in different fields, and based on container, Kubernetes, microservices and other trendy and advanced technologies, we have created a series of lightweight, out-of-the-box cloud native platform products. This series of products can be flexibly combined and used, providing a more abundant cloud native PaaS ecological experience. You can choose and subscribe to the corresponding products according to your actual business needs.</p>
+        </div> -->
+        <img src="img/center.png" alt="Platform Center Overview" class="product-image">
+              </div>
+          </div>
+
+    <!-- Container Platform 内容 -->
+    <div class="content-section" id="container-platform-section">
+      <div class="product-home">
+        <div class="product-header">
+          <h1>Container Platform</h1>
+          <p>企业级容器平台，提供全面的容器生命周期管理</p>
+        </div>
+        <div class="product-content">
+          <h2>产品介绍</h2>
+          <p>Container Platform 是一个企业级容器管理平台，为企业提供容器的全生命周期管理能力。通过标准化的容器技术和自动化的管理工具，帮助企业快速构建和部署云原生应用。</p>
+          
+          <h2>核心功能</h2>
+          <p>• 容器管理：提供容器的全生命周期管理，包括创建、部署、扩缩容等</p>
+          <p>• 服务编排：灵活的服务编排能力，支持复杂应用的快速部署</p>
+          <p>• 安全管控：完善的安全机制，保障容器运行时的安全性</p>
+              </div>
+              </div>
+          </div>
+
+    <!-- Service Mesh 内容 -->
+    <div class="content-section" id="service-mesh-section">
+      <div class="product-home">
+        <div class="product-header">
+          <h1>Service Mesh</h1>
+          <p>下一代微服务架构，提供智能流量管理和服务治理</p>
+        </div>
+        <div class="product-content">
+          <h2>产品介绍</h2>
+          <p>Service Mesh 是新一代的微服务管理平台，为企业提供先进的服务网格解决方案。通过智能的流量管理和全面的服务治理能力，帮助企业构建可靠、高效的微服务架构。</p>
+          
+          <h2>核心功能</h2>
+          <p>• 流量管理：智能的流量路由和负载均衡，优化服务间通信</p>
+          <p>• 服务治理：完整的服务治理功能，包括熔断、限流、重试等</p>
+          <p>• 可观测性：全方位的监控和追踪能力，快速定位问题</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DevOps 内容 -->
+    <div class="content-section" id="devops-section">
+      <div class="product-home">
+        <div class="product-header">
+          <h1>DevOps</h1>
+          <p>端到端的 DevOps 解决方案，加速应用交付</p>
+  </div>
+        <div class="product-content">
+          <h2>产品介绍</h2>
+          <p>DevOps 平台提供端到端的持续交付解决方案，帮助企业实现研发运维一体化。通过自动化的工具链和标准化的流程，提升团队协作效率和交付质量。</p>
+          
+          <h2>核心功能</h2>
+          <p>• 持续集成：自动化的构建和测试流程，提高开发效率</p>
+          <p>• 持续部署：自动化的部署流程，确保快速稳定的交付</p>
+          <p>• 流水线管理：可视化的流水线配置和管理，简化 CI/CD 流程</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Services 内容 -->
+    <div class="content-section" id="data-services-section">
+      <div class="product-home">
+        <div class="product-header">
+          <h1>Data Services</h1>
+          <p>云原生数据库服务，提供高可用的数据管理能力</p>
+  </div>
+        <div class="product-content">
+          <h2>产品介绍</h2>
+          <p>Data Services 是一个云原生数据库服务平台，为企业提供全面的数据库管理能力。通过自动化的运维工具和标准化的管理流程，简化数据库的日常运维工作。</p>
+          
+          <h2>核心功能</h2>
+          <p>• 数据库管理：统一的数据库生命周期管理，简化运维工作</p>
+          <p>• 高可用保障：自动故障转移和数据备份，确保服务可用性</p>
+          <p>• 性能监控：实时监控数据库性能，及时发现并解决问题</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Release Notes 内容 -->
+    <div class="content-section" id="release-notes-content">
+      <div class="article-content">
+        <button class="back-button" onclick="showCards()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+          </svg>
+          返回
+        </button>
+        <h1>Release Notes</h1>
+        <p>这里是 Release Notes 的正文内容。</p>
+        <p>可以包含版本更新信息、新功能说明、问题修复等内容。</p>
     </div>
   </div>
-  <div class="products-section">
-    <div class="products-container">
-      <h2 class="section-title text-center">
-        <span lang="en">User Manual</span>
-        <span lang="zh">用户手册</span>
-      </h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="product-card">
-            <a href="https://cloud.alauda.cn/docs/platform-docs/v3.18/zh/" style="text-decoration: none; color: inherit;">
-              <img alt="Platform Center" src="img/demo.jpg"/>
-              <div class="product-title">
-                <h5>Platform Center</h5>
-                <span class="version-tag" id="platformVersion">v3.18.0</span>
-              </div>
-              <p lang="en">Unified management platform for cloud native infrastructure and applications</p>
-              <p lang="zh">统一的云原生基础设施和应用管理平台</p>
-              <div class="view-docs">
-                <span lang="en">View Documentation</span>
-                <span lang="zh">查看文档</span>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-card">
-            <a href="https://cloud.alauda.cn/docs/acp-docs/v3.18/zh/" style="text-decoration: none; color: inherit;">
-              <img alt="Container Platform" src="img/demo.jpg"/>
-              <div class="product-title">
-                <h5>Container Platform</h5>
-                <span class="version-tag" id="containerVersion">v3.18.0</span>
-              </div>
-              <p lang="en">Enterprise-grade application deployment and operation platform based on Kubernetes</p>
-              <p lang="zh">基于 Kubernetes 的企业级应用部署和运维平台</p>
-              <div class="view-docs">
-                <span lang="en">View Documentation</span>
-                <span lang="zh">查看文档</span>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-card">
-            <a href="https://cloud.alauda.cn/docs/devops-docs/v3.18/zh/" style="text-decoration: none; color: inherit;">
-              <img alt="DevOps" src="img/demo.jpg"/>
-              <div class="product-title">
-                <h5>DevOps</h5>
-                <span class="version-tag" id="devopsVersion">v3.18.0</span>
-              </div>
-              <p lang="en">Continuous R&D and delivery platform with open toolchain integration framework</p>
-              <p lang="zh">开放式工具链集成框架的持续研发与交付平台</p>
-              <div class="view-docs">
-                <span lang="en">View Documentation</span>
-                <span lang="zh">查看文档</span>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-card">
-            <a href="https://cloud.alauda.cn/docs/asm-docs/v3.18/zh/" style="text-decoration: none; color: inherit;">
-              <img alt="Service Mesh" src="img/demo.jpg"/>
-              <div class="product-title">
-                <h5>Service Mesh</h5>
-                <span class="version-tag" id="serviceMeshVersion">v3.18.0</span>
-              </div>
-              <p lang="en">Cloud native service mesh solution with microservices, observability and openness</p>
-              <p lang="zh">具备微服务、可观测性和开放性的云原生服务网格解决方案</p>
-              <div class="view-docs">
-                <span lang="en">View Documentation</span>
-                <span lang="zh">查看文档</span>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-card">
-            <a href="https://cloud.alauda.cn/docs/dataservices-docs/v3.18/zh/mw-u-mysql/" style="text-decoration: none; color: inherit;">
-              <img alt="Data Services" src="img/demo.jpg"/>
-              <div class="product-title">
-                <h5>Data Services</h5>
-                <span class="version-tag" id="dataServicesVersion">v3.18.0</span>
-              </div>
-              <p lang="en">Comprehensive data service platform for database management and operations</p>
-              <p lang="zh">全面的数据库管理和运维服务平台</p>
-              <div class="view-docs">
-                <span lang="en">View Documentation</span>
-                <span lang="zh">查看文档</span>
-              </div>
-            </a>
-          </div>
-        </div>
+
+    <!-- Install 内容 -->
+    <div class="content-section" id="install-content">
+      <div class="article-content">
+        <button class="back-button" onclick="showCards()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+          </svg>
+          返回
+        </button>
+        <h1>安装指南</h1>
+        <p>这里是安装指南的正文内容。</p>
+        <p>包含系统要求、安装步骤、配置说明等内容。</p>
       </div>
     </div>
-  </div>
-  <div class="release-notes-section">
-    <h2 class="section-title text-center">
-      <span lang="en">Release Notes</span>
-      <span lang="zh">发版说明</span>
-    </h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="product-card">
-          <a href="https://cloud.alauda.cn/document/notes?version=v3.18&language=true" style="text-decoration: none; color: inherit;">
-            <img alt="Release Notes" src="img/demo.jpg"/>
-            <div class="product-title">
-              <h5>Release Notes</h5>
-              <span class="version-tag" id="releaseNotesVersion">v3.18.0</span>
-            </div>
-            <p lang="en">Detailed release notes for the current version</p>
-            <p lang="zh">当前版本的详细发版说明</p>
-            <div class="view-docs">
-              <span lang="en">View Release Notes</span>
-              <span lang="zh">查看发版说明</span>
-            </div>
-          </a>
-        </div>
+
+    <!-- Upgrade 内容 -->
+    <div class="content-section" id="upgrade-content">
+      <div class="article-content">
+        <button class="back-button" onclick="showCards()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+          </svg>
+          返回
+        </button>
+        <h1>升级指南</h1>
+        <p>这里是升级指南的正文内容。</p>
+        <p>包含升级准备、升级步骤、注意事项等内容。</p>
       </div>
     </div>
-  </div>
-  <div class="more-resources">
-    <div class="container">
-      <h2>
-        <span lang="en">More resources</span>
-        <span lang="zh">更多资源</span>
-      </h2>
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="resource-card">
-            <h3>
-              <span lang="en">Support</span>
-              <span lang="zh">技术支持</span>
-            </h3>
-            <p lang="en">Get answers quickly by opening a support case, directly access our support engineers during weekday business hours via live chat, or speak directly with an Alauda support expert by phone.</p>
-            <p lang="zh">通过提交支持工单快速获得答案，在工作日期间通过在线聊天直接联系我们的支持工程师，或通过电话直接与灵雀云支持专家交谈。</p>
-            <a href="support/index.html" class="resource-link">
-              <span lang="en">Get support</span>
-              <span lang="zh">取支持</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-links">
-        <a href="https://www.alauda.cn/about/" target="_blank">
-          <span lang="en">About Alauda</span>
-          <span lang="zh">关于灵雀云</span>
-        </a>
-        <a href="https://www.alauda.cn/contact/" target="_blank">
-          <span lang="en">Contact Us</span>
-          <span lang="zh">联系我们</span>
-        </a>
-        <a href="https://www.alauda.cn/privacy/" target="_blank">
-          <span lang="en">Privacy Policy</span>
-          <span lang="zh">隐私政策</span>
-        </a>
-        <a href="https://www.alauda.cn/terms/" target="_blank">
-          <span lang="en">Terms of Service</span>
-          <span lang="zh">服务条款</span>
-        </a>
-      </div>
-      <div class="footer-copyright">
-        <span lang="en">© 2024 Alauda. All rights reserved.</span>
-        <span lang="zh">© 2024 灵雀云。保留所有权利。</span>
-      </div>
-    </div>
-  </footer>
+  </main>
+
   <script>
-    // 语言切换功能
-    function switchLang(lang) {
-      document.body.className = lang === 'zh' ? 'zh' : '';
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-      });
-      
-      // 更新搜索框占位符文本
-      const searchInput = document.getElementById('searchInput');
-      searchInput.placeholder = lang === 'zh' ? '搜索文档' : 'Search documentation';
+    // 版本切换处理
+    function handleVersionChange() {
+      const version = document.getElementById('version-select').value;
+      console.log('Selected version:', version);
     }
 
-    // 搜索功能
-    function showSearchResults() {
-      const searchResults = document.getElementById('searchResults');
-      searchResults.style.display = 'block';
-      
-      // 点击页面其他地方时隐藏搜索结果
-      document.addEventListener('click', function(event) {
-        const searchContainer = document.querySelector('.search-container');
-        if (!searchContainer.contains(event.target)) {
-          searchResults.style.display = 'none';
+    // 分类切换处理
+    document.querySelectorAll('.category-item').forEach(item => {
+      item.addEventListener('click', function() {
+        // 移除其他项的active类
+        document.querySelectorAll('.category-item').forEach(i => {
+          i.classList.remove('active');
+        });
+        // 为当前点击项添加active类
+        this.classList.add('active');
+
+        // 获取点击项的文本内容
+        const category = this.textContent.trim();
+        
+        // 隐藏所有内容区域
+        document.querySelectorAll('.content-section').forEach(section => {
+          section.classList.remove('active');
+        });
+
+        // 根据类别显示对应内容
+        switch(category) {
+          case 'ABC':
+            document.getElementById('abc-section').classList.add('active');
+            break;
+          case 'Platform Center':
+            document.getElementById('platform-center-section').classList.add('active');
+            break;
+          case 'Container Platform':
+            document.getElementById('container-platform-section').classList.add('active');
+            break;
+          case 'Service Mesh':
+            document.getElementById('service-mesh-section').classList.add('active');
+            break;
+          case 'DevOps':
+            document.getElementById('devops-section').classList.add('active');
+            break;
+          case 'Data Services':
+            document.getElementById('data-services-section').classList.add('active');
+            break;
         }
       });
-    }
-
-    // 初始化语言
-    document.addEventListener('DOMContentLoaded', function() {
-      // 默认使用英文
-      switchLang('en');
     });
 
-    // 版本切换功能
-    function switchVersion() {
-      const version = document.getElementById('versionSelect').value;
-      // 更新卡片上的版本信息
-      document.querySelectorAll('.version-tag').forEach(tag => {
-        tag.textContent = version + '.0';
+    // 显示内容区域
+    function showContent(contentId) {
+      // 隐藏所有内容区域
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
       });
-      console.log('切换到版本:', version);
+      // 显示选中的内容区域
+      document.getElementById(contentId + '-content').classList.add('active');
+    }
+
+    // 显示卡片列表
+    function showCards() {
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById('cards-section').classList.add('active');
     }
   </script>
  </body>

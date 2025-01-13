@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分享：我的量子编程学习路线图 - Quantum</title>
+    <!-- 本地库引用（优先） -->
+    <link rel="stylesheet" href="../../assets/lib/bootstrap.min.css">
+    <!-- CDN备选引用 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          onerror="this.onerror=null;this.href='../../assets/lib/bootstrap.min.css';">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css"
+          onerror="this.onerror=null;this.href='../../assets/lib/fontawesome-free.min.css';">
+    <!-- 全局样式 -->
+    <link rel="stylesheet" href="../../style.css">
+    <!-- 讨论详情页专用样式 -->
+    <style>
+        .discussion-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .discussion-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .discussion-meta span {
+            margin-right: 1.5rem;
+        }
+        .discussion-tags {
+            margin: 1rem 0;
+        }
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            margin-right: 0.5rem;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .comment {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .comment-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .comment-meta span {
+            margin-right: 1rem;
+        }
+        .comment-content {
+            margin-bottom: 1rem;
+        }
+        .comment-actions {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .comment-actions a {
+            margin-right: 1rem;
+            text-decoration: none;
+            color: #666;
+        }
+        .comment-actions a:hover {
+            color: #007bff;
+        }
+        .comment-form {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+        .nested-comment {
+            margin-left: 3rem;
+            border-left: 2px solid #eee;
+            padding-left: 1rem;
+        }
+        .learning-path-step {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .learning-path-step h4 {
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+        .resource-link {
+            display: inline-block;
+            margin: 0.5rem 0;
+            padding: 0.5rem 1rem;
+            background: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.2s;
+        }
+        .resource-link:hover {
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html"><i class="fas fa-atom"></i> Quantum</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html"><i class="fas fa-home"></i> 首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../learning/"><i class="fas fa-graduation-cap"></i> 学习中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../community/"><i class="fas fa-users"></i> 社区互动</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../events/"><i class="fas fa-calendar-alt"></i> 活动中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resources/"><i class="fas fa-book"></i> 资源中心</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="discussion-content">
+        <div class="mb-4">
+            <a href="index.html" class="text-decoration-none">
+                <i class="fas fa-arrow-left"></i> 返回讨论列表
+            </a>
+        </div>
+
+        <!-- 讨论主题 -->
+        <article class="discussion-main">
+            <h1>分享：我的量子编程学习路线图</h1>
+            
+            <div class="discussion-meta">
+                <span><i class="fas fa-user"></i> 编程爱好者</span>
+                <span><i class="fas fa-clock"></i> 2024-03-19 08:30</span>
+                <span><i class="fas fa-eye"></i> 2,150次浏览</span>
+                <span><i class="fas fa-comments"></i> 89条回复</span>
+            </div>
+
+            <div class="discussion-tags">
+                <span class="tag">经验分享</span>
+                <span class="tag">学习路线</span>
+                <span class="tag">量子编程</span>
+            </div>
+
+            <div class="discussion-body">
+                <p>
+                    大家好！我是一名软件工程师，从去年开始自学量子编程。经过一年的学习和实践，我想分享一下我的学习路线图，
+                    希望能帮助到同样对量子计算感兴趣的朋友们。
+                </p>
+
+                <!-- 第一阶段：基础准备 -->
+                <div class="learning-path-step">
+                    <h4>第一阶段：基础准备（2-3个月）</h4>
+                    <ul>
+                        <li>线性代数复习
+                            <ul>
+                                <li>重点：矩阵运算、特征值和特征向量、张量积</li>
+                                <li>推荐资源：<a href="#" class="resource-link">MIT线性代数公开课</a></li>
+                            </ul>
+                        </li>
+                        <li>量子力学基础
+                            <ul>
+                                <li>重点：量子态、叠加原理、测量</li>
+                                <li>推荐资源：<a href="#" class="resource-link">Quantum Mechanics for Scientists and Engineers</a></li>
+                            </ul>
+                        </li>
+                        <li>Python编程基础
+                            <ul>
+                                <li>重点：NumPy库的使用</li>
+                                <li>推荐资源：<a href="#" class="resource-link">Python科学计算入门</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 第二阶段：量子计算基础 -->
+                <div class="learning-path-step">
+                    <h4>第二阶段：量子计算基础（3-4个月）</h4>
+                    <ul>
+                        <li>量子计算基本概念
+                            <ul>
+                                <li>重点：量子比特、量子门、量子电路</li>
+                                <li>推荐资源：<a href="#" class="resource-link">Quantum Computing for Computer Scientists</a></li>
+                            </ul>
+                        </li>
+                        <li>Qiskit入门
+                            <ul>
+                                <li>重点：基本语法、量子电路构建</li>
+                                <li>推荐资源：<a href="#" class="resource-link">Qiskit官方教程</a></li>
+                            </ul>
+                        </li>
+                        <li>基础量子算法
+                            <ul>
+                                <li>重点：Deutsch-Jozsa算法、Grover算法</li>
+                                <li>推荐资源：<a href="#" class="resource-link">Quantum Algorithm Zoo</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 第三阶段：实践提高 -->
+                <div class="learning-path-step">
+                    <h4>第三阶段：实践提高（4-5个月）</h4>
+                    <ul>
+                        <li>高级量子算法
+                            <ul>
+                                <li>重点：Shor算法、量子相位估计</li>
+                                <li>实践项目：实现简单的量子算法</li>
+                            </ul>
+                        </li>
+                        <li>量子机器学习
+                            <ul>
+                                <li>重点：量子神经网络、变分量子算法</li>
+                                <li>推荐资源：<a href="#" class="resource-link">PennyLane教程</a></li>
+                            </ul>
+                        </li>
+                        <li>实际项目实践
+                            <ul>
+                                <li>参与开源项目</li>
+                                <li>解决实际问题</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <p>
+                    学习建议：
+                </p>
+                <ul>
+                    <li>循序渐进，不要急于求成</li>
+                    <li>多动手实践，理论结合实践</li>
+                    <li>参与社区讨论，与他人交流学习</li>
+                    <li>关注最新进展，保持学习热情</li>
+                </ul>
+
+                <p>
+                    希望这个学习路线图对大家有帮助！如果有任何问题，欢迎在评论区讨论。
+                </p>
+            </div>
+        </article>
+
+        <!-- 评论区 -->
+        <section class="comments-section mt-5">
+            <h3>评论 (89)</h3>
+
+            <!-- 评论1 -->
+            <div class="comment">
+                <div class="d-flex">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" alt="用户头像" class="user-avatar">
+                    <div class="flex-grow-1">
+                        <div class="comment-meta">
+                            <span><strong>量子初学者</strong></span>
+                            <span>2024-03-19 08:45</span>
+                        </div>
+                        <div class="comment-content">
+                            <p>
+                                非常感谢分享！请问第一阶段的线性代数基础，需要掌握到什么程度？我本科学过，但都忘得差不多了。
+                            </p>
+                        </div>
+                        <div class="comment-actions">
+                            <a href="#"><i class="fas fa-thumbs-up"></i> 28</a>
+                            <a href="#"><i class="fas fa-reply"></i> 回复</a>
+                        </div>
+
+                        <!-- 楼主回复 -->
+                        <div class="nested-comment mt-3">
+                            <div class="d-flex">
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Bob" alt="用户头像" class="user-avatar">
+                                <div class="flex-grow-1">
+                                    <div class="comment-meta">
+                                        <span><strong>编程爱好者</strong></span>
+                                        <span>2024-03-19 09:00</span>
+                                    </div>
+                                    <div class="comment-content">
+                                        <p>
+                                            主要需要掌握矩阵运算和特征值计算，因为这些在理解量子门和量子态时会经常用到。
+                                            建议重点复习这些内容，其他可以在用到时再补充学习。
+                                        </p>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <a href="#"><i class="fas fa-thumbs-up"></i> 15</a>
+                                        <a href="#"><i class="fas fa-reply"></i> 回复</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 评论2 -->
+            <div class="comment">
+                <div class="d-flex">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Carol" alt="用户头像" class="user-avatar">
+                    <div class="flex-grow-1">
+                        <div class="comment-meta">
+                            <span><strong>量子研究生</strong></span>
+                            <span>2024-03-19 09:15</span>
+                        </div>
+                        <div class="comment-content">
+                            <p>
+                                这个路线图很完整！建议在第二阶段加入一些量子纠错的内容，这在实际编程中很重要。
+                                另外，PennyLane确实是学习量子机器学习的好工具。
+                            </p>
+                        </div>
+                        <div class="comment-actions">
+                            <a href="#"><i class="fas fa-thumbs-up"></i> 32</a>
+                            <a href="#"><i class="fas fa-reply"></i> 回复</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 评论3 -->
+            <div class="comment">
+                <div class="d-flex">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=David" alt="用户头像" class="user-avatar">
+                    <div class="flex-grow-1">
+                        <div class="comment-meta">
+                            <span><strong>软件工程师</strong></span>
+                            <span>2024-03-19 09:30</span>
+                        </div>
+                        <div class="comment-content">
+                            <p>
+                                作为一个同样在学习量子编程的软件工程师，完全认同这个路线！
+                                特别是Python和NumPy的基础很重要，因为Qiskit和其他框架都是基于Python的。
+                            </p>
+                        </div>
+                        <div class="comment-actions">
+                            <a href="#"><i class="fas fa-thumbs-up"></i> 24</a>
+                            <a href="#"><i class="fas fa-reply"></i> 回复</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 评论输入框 -->
+            <div class="comment-form">
+                <h4>发表评论</h4>
+                <form>
+                    <div class="mb-3">
+                        <textarea class="form-control" rows="4" placeholder="写下你的看法..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">发表评论</button>
+                </form>
+            </div>
+
+            <!-- 分页 -->
+            <nav aria-label="Comment navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">上一页</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">下一页</a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>关于我们</h5>
+                    <p>Quantum是全球领先的量子计算学习与交流平台，致力于推动量子计算技术的普及与发展。</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>快速链接</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../learning/">学习中心</a></li>
+                        <li><a href="../community/">社区互动</a></li>
+                        <li><a href="../resources/">资源中心</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>联系我们</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope"></i> contact@quantum-platform.com</li>
+                        <li><i class="fas fa-phone"></i> +86 10-1234-5678</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2024 Quantum. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript 依赖 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            onerror="this.onerror=null;this.src='../../assets/lib/bootstrap.bundle.min.js';"></script>
+</body>
+</html> 

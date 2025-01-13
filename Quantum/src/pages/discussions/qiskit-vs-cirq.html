@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qiskit vs. Cirq：哪个更适合入门？ - Quantum</title>
+    <!-- 本地库引用（优先） -->
+    <link rel="stylesheet" href="../../assets/lib/bootstrap.min.css">
+    <!-- CDN备选引用 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          onerror="this.onerror=null;this.href='../../assets/lib/bootstrap.min.css';">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css"
+          onerror="this.onerror=null;this.href='../../assets/lib/fontawesome-free.min.css';">
+    <!-- 全局样式 -->
+    <link rel="stylesheet" href="../../style.css">
+    <!-- 讨论详情页专用样式 -->
+    <style>
+        .discussion-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .discussion-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .discussion-meta span {
+            margin-right: 1.5rem;
+        }
+        .discussion-tags {
+            margin: 1rem 0;
+        }
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            margin-right: 0.5rem;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .comment {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .comment-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .comment-meta span {
+            margin-right: 1rem;
+        }
+        .comment-content {
+            margin-bottom: 1rem;
+        }
+        .comment-actions {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .comment-actions a {
+            margin-right: 1rem;
+            text-decoration: none;
+            color: #666;
+        }
+        .comment-actions a:hover {
+            color: #007bff;
+        }
+        .comment-form {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+        .nested-comment {
+            margin-left: 3rem;
+            border-left: 2px solid #eee;
+            padding-left: 1rem;
+        }
+        .comparison-table {
+            width: 100%;
+            margin: 2rem 0;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            border: 1px solid #eee;
+        }
+        .comparison-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        .comparison-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        .feature-list {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html"><i class="fas fa-atom"></i> Quantum</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html"><i class="fas fa-home"></i> 首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../learning/"><i class="fas fa-graduation-cap"></i> 学习中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../community/"><i class="fas fa-users"></i> 社区互动</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../events/"><i class="fas fa-calendar-alt"></i> 活动中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resources/"><i class="fas fa-book"></i> 资源中心</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="discussion-content">
+        <div class="mb-4">
+            <a href="index.html" class="text-decoration-none">
+                <i class="fas fa-arrow-left"></i> 返回讨论列表
+            </a>
+        </div>
+
+        <!-- 讨论主题 -->
+        <article class="discussion-main">
+            <h1>Qiskit vs. Cirq：哪个更适合入门？</h1>
+            
+            <div class="discussion-meta">
+                <span><i class="fas fa-user"></i> 新手求助</span>
+                <span><i class="fas fa-clock"></i> 2024-03-19 09:00</span>
+                <span><i class="fas fa-eye"></i> 4,280次浏览</span>
+                <span><i class="fas fa-comments"></i> 156条回复</span>
+            </div>
+
+            <div class="discussion-tags">
+                <span class="tag">工具对比</span>
+                <span class="tag">入门咨询</span>
+                <span class="tag">开发工具</span>
+            </div>
+
+            <div class="discussion-body">
+                <p>
+                    作为一名量子计算的初学者，我在选择入门框架时遇到了困惑。Qiskit和Cirq都是很受欢迎的量子计算框架，
+                    但不知道该从哪个开始学起。希望有经验的同学能分享一下这两个框架的优缺点，以及适合的学习路径。
+                </p>
+
+                <div class="feature-list">
+                    <h4>我的主要关注点：</h4>
+                    <ul>
+                        <li>学习曲线的陡峭程度</li>
+                        <li>文档和教程的完整性</li>
+                        <li>社区支持的活跃度</li>
+                        <li>实际项目中的应用情况</li>
+                    </ul>
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>特性</th>
+                            <th>Qiskit</th>
+                            <th>Cirq</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>开发商</td>
+                            <td>IBM</td>
+                            <td>Google</td>
+                        </tr>
+                        <tr>
+                            <td>编程语言</td>
+                            <td>Python</td>
+                            <td>Python</td>
+                        </tr>
+                        <tr>
+                            <td>云平台接入</td>
+                            <td>IBM Quantum Experience</td>
+                            <td>Google Quantum AI</td>
+                        </tr>
+                        <tr>
+                            <td>模拟器支持</td>
+                            <td>多种模拟器，包括噪声模型</td>
+                            <td>基础模拟器</td>
+                        </tr>
+                        <tr>
+                            <td>可视化工具</td>
+                            <td>丰富的可视化组件</td>
+                            <td>基础可视化功能</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    我已经看了一些基础教程，但还是不太确定：
+                </p>
+                <ul>
+                    <li>Qiskit似乎文档更丰富，但看起来更复杂？</li>
+                    <li>Cirq的语法看起来更简洁，但资源相对较少？</li>
+                    <li>两者的性能差异大吗？</li>
+                    <li>如果先学习一个，之后转换到另一个容易吗？</li>
+                </ul>
+
+                <p>
+                    希望有经验的同学能分享一下使用体验和建议！
+                </p>
+            </div>
+        </article>
+
+        <!-- 评论区 -->
+        <section class="comments-section mt-5">
+            <h3>评论 (156)</h3>
+
+            <!-- 评论1 -->
+            <div class="comment">
+                <div class="d-flex">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" alt="用户头像" class="user-avatar">
+                    <div class="flex-grow-1">
+                        <div class="comment-meta">
+                            <span><strong>IBM Quantum开发者</strong></span>
+                            <span>2024-03-19 09:15</span>
+                        </div>
+                        <div class="comment-content">
+                            <p>
+                                作为一名Qiskit的开发者，我建议从Qiskit开始学习。主要原因有：
+                            </p>
+                            <ol>
+                                <li>完整的学习资源，包括教程、文档和示例代码</li>
+                                <li>活跃的社区支持，遇到问题容易找到解答</li>
+                                <li>免费访问IBM的量子计算机</li>
+                                <li>丰富的可视化工具，有助于理解量子电路</li>
+                            </ol>
+                        </div>
+                        <div class="comment-actions">
+                            <a href="#"><i class="fas fa-thumbs-up"></i> 48</a>
+                            <a href="#"><i class="fas fa-reply"></i> 回复</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 评论2 -->
+            <div class="comment">
+                <div class="d-flex">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Beth" alt="用户头像" class="user-avatar">
+                    <div class="flex-grow-1">
+                        <div class="comment-meta">
+                            <span><strong>量子算法研究员</strong></span>
+                            <span>2024-03-19 09:30</span>
+                        </div>
+                        <div class="comment-content">
+                            <p>
+                                我两个框架都有使用经验，个人建议：
+                            </p>
+                            <ul>
+                                <li>如果你更关注学术研究和算法开发，选择Qiskit</li>
+                                <li>如果你想快速实现简单的量子电路，Cirq可能更适合</li>
+                                <li>两者的基本概念是通用的，学会一个后转换并不困难</li>
+                            </ul>
+                        </div>
+                        <div class="comment-actions">
+                            <a href="#"><i class="fas fa-thumbs-up"></i> 35</a>
+                            <a href="#"><i class="fas fa-reply"></i> 回复</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 评论3 -->
+            <div class="comment">
+                <div class="d-flex">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Charlie" alt="用户头像" class="user-avatar">
+                    <div class="flex-grow-1">
+                        <div class="comment-meta">
+                            <span><strong>Google量子团队成员</strong></span>
+                            <span>2024-03-19 09:45</span>
+                        </div>
+                        <div class="comment-content">
+                            <p>
+                                Cirq的设计理念是简洁和灵活。如果你喜欢更直观的编程体验，Cirq是个不错的选择。
+                                我们最近也在不断改进文档和教程，欢迎查看我们的最新学习资源。
+                            </p>
+                        </div>
+                        <div class="comment-actions">
+                            <a href="#"><i class="fas fa-thumbs-up"></i> 29</a>
+                            <a href="#"><i class="fas fa-reply"></i> 回复</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 评论输入框 -->
+            <div class="comment-form">
+                <h4>发表评论</h4>
+                <form>
+                    <div class="mb-3">
+                        <textarea class="form-control" rows="4" placeholder="写下你的看法..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">发表评论</button>
+                </form>
+            </div>
+
+            <!-- 分页 -->
+            <nav aria-label="Comment navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">上一页</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">下一页</a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>关于我们</h5>
+                    <p>Quantum是全球领先的量子计算学习与交流平台，致力于推动量子计算技术的普及与发展。</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>快速链接</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../learning/">学习中心</a></li>
+                        <li><a href="../community/">社区互动</a></li>
+                        <li><a href="../resources/">资源中心</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>联系我们</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope"></i> contact@quantum-platform.com</li>
+                        <li><i class="fas fa-phone"></i> +86 10-1234-5678</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2024 Quantum. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript 依赖 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            onerror="this.onerror=null;this.src='../../assets/lib/bootstrap.bundle.min.js';"></script>
+</body>
+</html> 

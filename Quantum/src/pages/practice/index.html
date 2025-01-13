@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>量子计算实践专区 - Quantum</title>
+    <!-- 本地库引用（优先） -->
+    <link rel="stylesheet" href="../../assets/lib/bootstrap.min.css">
+    <!-- CDN备选引用 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          onerror="this.onerror=null;this.href='../../assets/lib/bootstrap.min.css';">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css"
+          onerror="this.onerror=null;this.href='../../assets/lib/fontawesome-free.min.css';">
+    <!-- 全局样式 -->
+    <link rel="stylesheet" href="../../style.css">
+    <!-- 实践专区专用样式 -->
+    <style>
+        .practice-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .practice-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .practice-card:hover {
+            transform: translateY(-5px);
+        }
+        .practice-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .practice-icon {
+            width: 60px;
+            height: 60px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+        .practice-info {
+            flex-grow: 1;
+        }
+        .practice-stats {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+            color: #666;
+        }
+        .practice-stat {
+            display: flex;
+            align-items: center;
+        }
+        .practice-stat i {
+            margin-right: 0.5rem;
+        }
+        .feature-list {
+            margin-top: 1.5rem;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: #007bff;
+        }
+        .practice-actions {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .difficulty-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .difficulty-easy {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        .difficulty-medium {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        .difficulty-hard {
+            background: #fbe9e7;
+            color: #d84315;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html"><i class="fas fa-atom"></i> Quantum</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html"><i class="fas fa-home"></i> 首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../learning/"><i class="fas fa-graduation-cap"></i> 学习中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../community/"><i class="fas fa-users"></i> 社区互动</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../events/"><i class="fas fa-calendar-alt"></i> 活动中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../resources/"><i class="fas fa-book"></i> 资源中心</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="practice-section">
+        <div class="text-center mb-5">
+            <h1>量子计算实践专区</h1>
+            <p class="lead">在真实的量子环境中实践和验证你的想法</p>
+        </div>
+
+        <!-- 在线编程环境 -->
+        <div class="practice-card">
+            <div class="practice-header">
+                <div class="practice-icon">
+                    <i class="fas fa-laptop-code text-primary"></i>
+                </div>
+                <div class="practice-info">
+                    <h2>在线量子编程环境</h2>
+                    <p>使用Qiskit、Cirq等主流量子计算框架，在云端进行量子编程实践。</p>
+                </div>
+            </div>
+            <div class="practice-stats">
+                <div class="practice-stat">
+                    <i class="fas fa-microchip"></i>
+                    <span>支持多种量子处理器</span>
+                </div>
+                <div class="practice-stat">
+                    <i class="fas fa-code-branch"></i>
+                    <span>实时代码协作</span>
+                </div>
+                <div class="practice-stat">
+                    <i class="fas fa-users"></i>
+                    <span>5,280人在使用</span>
+                </div>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div>
+                        <h5>量子电路设计器</h5>
+                        <p class="mb-0">可视化设计和模拟量子电路</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <h5>实时结果分析</h5>
+                        <p class="mb-0">量子态可视化和测量结果统计</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div>
+                        <h5>云端量子模拟器</h5>
+                        <p class="mb-0">高性能量子电路模拟</p>
+                    </div>
+                </div>
+            </div>
+            <div class="practice-actions">
+                <a href="online-ide/" class="btn btn-primary">立即使用</a>
+                <a href="online-ide/docs.html" class="btn btn-outline-primary">查看文档</a>
+            </div>
+        </div>
+
+        <!-- 实验项目 -->
+        <div class="practice-card">
+            <div class="practice-header">
+                <div class="practice-icon">
+                    <i class="fas fa-flask text-success"></i>
+                </div>
+                <div class="practice-info">
+                    <h2>量子计算实验项目</h2>
+                    <p>从基础到高级的量子计算实验，帮助你深入理解量子计算原理。</p>
+                </div>
+            </div>
+            <div class="practice-stats">
+                <div class="practice-stat">
+                    <i class="fas fa-tasks"></i>
+                    <span>50+ 实验项目</span>
+                </div>
+                <div class="practice-stat">
+                    <i class="fas fa-clock"></i>
+                    <span>定期更新</span>
+                </div>
+                <div class="practice-stat">
+                    <i class="fas fa-users"></i>
+                    <span>3,840人已完成</span>
+                </div>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div>
+                        <h5>量子纠缠实验</h5>
+                        <span class="difficulty-badge difficulty-easy">入门</span>
+                        <p class="mb-0">创建和测量贝尔态，理解量子纠缠的本质</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div>
+                        <h5>量子密钥分发</h5>
+                        <span class="difficulty-badge difficulty-medium">进阶</span>
+                        <p class="mb-0">实现BB84协议，体验量子通信的安全性</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div>
+                        <h5>量子机器学习</h5>
+                        <span class="difficulty-badge difficulty-hard">高级</span>
+                        <p class="mb-0">实现量子支持向量机，探索量子优势</p>
+                    </div>
+                </div>
+            </div>
+            <div class="practice-actions">
+                <a href="experiments/" class="btn btn-primary">浏览实验</a>
+                <a href="experiments/guide.html" class="btn btn-outline-primary">实验指南</a>
+            </div>
+        </div>
+
+        <!-- 案例研究 -->
+        <div class="practice-card">
+            <div class="practice-header">
+                <div class="practice-icon">
+                    <i class="fas fa-microscope text-info"></i>
+                </div>
+                <div class="practice-info">
+                    <h2>量子计算案例研究</h2>
+                    <p>真实世界中的量子计算应用案例，了解量子计算如何解决实际问题。</p>
+                </div>
+            </div>
+            <div class="practice-stats">
+                <div class="practice-stat">
+                    <i class="fas fa-book"></i>
+                    <span>20+ 详细案例</span>
+                </div>
+                <div class="practice-stat">
+                    <i class="fas fa-industry"></i>
+                    <span>覆盖多个领域</span>
+                </div>
+                <div class="practice-stat">
+                    <i class="fas fa-download"></i>
+                    <span>2,560次下载</span>
+                </div>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div>
+                        <h5>金融投资组合优化</h5>
+                        <p class="mb-0">使用量子算法优化投资组合配置</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div>
+                        <h5>分子结构模拟</h5>
+                        <p class="mb-0">量子化学计算与药物研发应用</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div>
+                        <h5>物流路径优化</h5>
+                        <p class="mb-0">解决实际的运输路径优化问题</p>
+                    </div>
+                </div>
+            </div>
+            <div class="practice-actions">
+                <a href="case-studies/" class="btn btn-primary">查看案例</a>
+                <a href="case-studies/submit.html" class="btn btn-outline-primary">提交案例</a>
+            </div>
+        </div>
+
+        <!-- 实践作业 -->
+        <div class="practice-card">
+            <div class="practice-header">
+                <div class="practice-icon">
+                    <i class="fas fa-tasks text-warning"></i>
+                </div>
+                <div class="practice-info">
+                    <h2>量子计算实践作业</h2>
+                    <p>通过完成实践作业，检验和巩固你的量子计算知识。</p>
+                </div>
+            </div>
+            <div class="practice-stats">
+                <div class="practice-stat">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>30+ 实践任务</span>
+                </div>
+                <div class="practice-stat">
+                    <i class="fas fa-star"></i>
+                    <span>自动评分系统</span>
+                </div>
+                <div class="practice-stat">
+                    <i class="fas fa-trophy"></i>
+                    <span>1,920人已获证书</span>
+                </div>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div>
+                        <h5>量子算法实现</h5>
+                        <span class="difficulty-badge difficulty-easy">基础</span>
+                        <p class="mb-0">实现基础量子算法，如Deutsch-Jozsa算法</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div>
+                        <h5>量子电路优化</h5>
+                        <span class="difficulty-badge difficulty-medium">中级</span>
+                        <p class="mb-0">优化量子电路深度和门数量</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <div>
+                        <h5>量子应用开发</h5>
+                        <span class="difficulty-badge difficulty-hard">高级</span>
+                        <p class="mb-0">开发完整的量子计算应用</p>
+                    </div>
+                </div>
+            </div>
+            <div class="practice-actions">
+                <a href="assignments/" class="btn btn-primary">开始练习</a>
+                <a href="assignments/ranking.html" class="btn btn-outline-primary">查看排行榜</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>关于我们</h5>
+                    <p>Quantum是全球领先的量子计算学习与交流平台，致力于推动量子计算技术的普及与发展。</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>快速链接</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../learning/">学习中心</a></li>
+                        <li><a href="../community/">社区互动</a></li>
+                        <li><a href="../resources/">资源中心</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>联系我们</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope"></i> contact@quantum-platform.com</li>
+                        <li><i class="fas fa-phone"></i> +86 10-1234-5678</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2024 Quantum. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript 依赖 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            onerror="this.onerror=null;this.src='../../assets/lib/bootstrap.bundle.min.js';"></script>
+</body>
+</html> 

@@ -85,7 +85,7 @@ async function loadFeaturedArticles() {
             readTime: '15分钟',
             tags: ['入门', '理论基础'],
             views: 12580,
-            link: '#'
+            link: 'pages/articles/quantum-computing-guide.html'
         },
         {
             title: 'Shor算法详解：破解RSA加密的量子方法',
@@ -93,7 +93,7 @@ async function loadFeaturedArticles() {
             readTime: '20分钟',
             tags: ['算法', '密码学'],
             views: 8920,
-            link: '#'
+            link: 'pages/articles/shor-algorithm.html'
         },
         {
             title: '量子纠缠与量子隐形传态：探索量子通信基础',
@@ -101,7 +101,7 @@ async function loadFeaturedArticles() {
             readTime: '18分钟',
             tags: ['量子通信', '物理原理'],
             views: 6730,
-            link: '#'
+            link: 'pages/articles/quantum-entanglement.html'
         },
         {
             title: 'NISQ时代的量子算法优化策略',
@@ -109,7 +109,7 @@ async function loadFeaturedArticles() {
             readTime: '25分钟',
             tags: ['算法优化', '实用量子计算'],
             views: 5840,
-            link: '#'
+            link: 'pages/articles/nisq-optimization.html'
         }
     ];
 
@@ -206,7 +206,7 @@ async function loadHotTopics() {
             views: 3420,
             lastUpdate: '10分钟前',
             tags: ['学术讨论', '前沿进展'],
-            link: '#'
+            link: 'pages/discussions/quantum-supremacy.html'
         },
         {
             title: '分享：我的量子编程学习路线图',
@@ -215,7 +215,7 @@ async function loadHotTopics() {
             views: 2150,
             lastUpdate: '2小时前',
             tags: ['经验分享', '学习路线'],
-            link: '#'
+            link: 'pages/discussions/learning-path.html'
         },
         {
             title: 'Qiskit vs. Cirq：哪个更适合入门？',
@@ -224,7 +224,7 @@ async function loadHotTopics() {
             views: 4280,
             lastUpdate: '4小时前',
             tags: ['工具对比', '入门咨询'],
-            link: '#'
+            link: 'pages/discussions/qiskit-vs-cirq.html'
         },
         {
             title: '量子机器学习在金融领域的应用前景',
@@ -233,7 +233,7 @@ async function loadHotTopics() {
             views: 2840,
             lastUpdate: '6小时前',
             tags: ['应用研究', '行业前景'],
-            link: '#'
+            link: 'pages/discussions/quantum-ml-finance.html'
         }
     ];
 
@@ -266,4 +266,56 @@ function showError(message) {
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     `;
     document.querySelector('main').prepend(alert);
+}
+
+function loadHotDiscussions() {
+    const hotDiscussions = [
+        {
+            title: "如何评价最新的量子优越性实验？",
+            author: "量子探索者",
+            date: "2024-03-19",
+            views: 5280,
+            comments: 245,
+            url: "pages/discussions/quantum-supremacy.html"
+        },
+        {
+            title: "分享：我的量子编程学习路线图",
+            author: "量子开发者",
+            date: "2024-03-19",
+            views: 4680,
+            comments: 186,
+            url: "pages/discussions/learning-path.html"
+        },
+        {
+            title: "Qiskit vs. Cirq：哪个更适合入门？",
+            author: "新手求助",
+            date: "2024-03-19",
+            views: 4280,
+            comments: 156,
+            url: "pages/discussions/qiskit-vs-cirq.html"
+        },
+        {
+            title: "量子计算在金融领域的应用前景",
+            author: "金融科技专家",
+            date: "2024-03-19",
+            views: 3850,
+            comments: 128,
+            url: "pages/discussions/quantum-finance-applications.html"
+        }
+    ];
+
+    const discussionsList = document.querySelector('#hotDiscussions');
+    if (!discussionsList) return;
+
+    discussionsList.innerHTML = hotDiscussions.map(discussion => `
+        <div class="discussion-item">
+            <h3><a href="${discussion.url}">${discussion.title}</a></h3>
+            <div class="discussion-meta">
+                <span><i class="fas fa-user"></i> ${discussion.author}</span>
+                <span><i class="fas fa-calendar"></i> ${discussion.date}</span>
+                <span><i class="fas fa-eye"></i> ${discussion.views}次浏览</span>
+                <span><i class="fas fa-comments"></i> ${discussion.comments}条评论</span>
+            </div>
+        </div>
+    `).join('');
 } 

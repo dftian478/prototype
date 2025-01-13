@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型页面导航中心</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --hover-color: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        .container {
+            max-width: 1000px;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--primary-color), #1e40af);
+            color: white;
+            border-radius: 1rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .search-box input {
+            padding-left: 2.5rem;
+            border-radius: 2rem;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+        }
+
+        .card {
+            border: none;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .card-header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 1.5rem;
+            border-radius: 1rem 1rem 0 0 !important;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-header i {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+        }
+
+        .list-group-item {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 0;
+            border-right: 0;
+            transition: all 0.2s ease;
+        }
+
+        .list-group-item .content {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .list-group-item .link-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .list-group-item .title-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .list-group-item .update-time {
+            font-size: 0.75rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .list-group-item .badges {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .list-group-item:last-child {
+            border-radius: 0 0 1rem 1rem;
+        }
+
+        .list-group-item-action:hover {
+            background-color: #f1f5f9;
+            transform: translateX(5px);
+        }
+
+        .badge {
+            padding: 0.5em 1em;
+            border-radius: 2rem;
+            font-weight: 500;
+        }
+
+        .badge.bg-primary {
+            background-color: var(--primary-color) !important;
+        }
+
+        .badge.bg-success {
+            background-color: #059669 !important;
+        }
+
+        .badge.bg-warning {
+            background-color: #d97706 !important;
+            color: white;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .status-dot.active {
+            background-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+
+        .status-dot.maintenance {
+            background-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .page-header {
+                margin-bottom: 2rem;
+                padding: 1.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="mb-2">原型页面导航中心</h1>
+            <p class="mb-0">集中管理和访问所有原型页面</p>
+        </div>
+
+        <div class="search-box">
+            <i class="bi bi-search"></i>
+            <input type="text" class="form-control" id="searchInput" placeholder="搜索页面...">
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-box-seam"></i>
+                <span>AC Demo 相关页面</span>
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="acdemo_latest-app/index.html" class="list-group-item list-group-item-action">
+                    <div class="content">
+                        <div class="link-info">
+                            <div class="title-row">
+                                <span class="status-dot active"></span>
+                                <span>AC 组合下载安装需求原型 - 按照插件分类</span>
+                            </div>
+                            <div class="update-time">
+                                <i class="bi bi-clock-history"></i>
+                                <span>最后更新：2024年1月8日 02:16</span>
+                            </div>
+                        </div>
+                        <div class="badges">
+                            <span class="badge bg-primary">最新</span>
+                            <span class="badge bg-success">活跃开发中</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="acdemo_latest/index.html" class="list-group-item list-group-item-action">
+                    <div class="content">
+                        <div class="link-info">
+                            <div class="title-row">
+                                <span class="status-dot maintenance"></span>
+                                <span>AC 组合下载安装需求原型 - 按照功能分类</span>
+                            </div>
+                            <div class="update-time">
+                                <i class="bi bi-clock-history"></i>
+                                <span>最后更新：2023年12月27日 15:27</span>
+                            </div>
+                        </div>
+                        <div class="badges">
+                            <span class="badge bg-warning">旧版</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-book"></i>
+                <span>AC 文档相关页面</span>
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="docs-ac-demo/docs.html" class="list-group-item list-group-item-action">
+                    <div class="content">
+                        <div class="link-info">
+                            <div class="title-row">
+                                <i class="bi bi-file-text"></i>
+                                <span>docs.alauda.io 文档</span>
+                            </div>
+                            <div class="update-time">
+                                <i class="bi bi-clock-history"></i>
+                                <span>最后更新：2023年12月24日 13:08</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="docs-ac-demo/support/index.html" class="list-group-item list-group-item-action">
+                    <div class="content">
+                        <div class="link-info">
+                            <div class="title-row">
+                                <i class="bi bi-question-circle"></i>
+                                <span>support.alauda.io 文档</span>
+                            </div>
+                            <div class="update-time">
+                                <i class="bi bi-clock-history"></i>
+                                <span>最后更新：2023年12月24日 13:08</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-grid"></i>
+                <span>其他项目页面</span>
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="Quantum/src/index.html" class="list-group-item list-group-item-action">
+                    <div class="content">
+                        <div class="link-info">
+                            <div class="title-row">
+                                <i class="bi bi-cpu"></i>
+                                <span>玻色量子社区网站</span>
+                            </div>
+                            <div class="update-time">
+                                <i class="bi bi-clock-history"></i>
+                                <span>最后更新：2024年1月7日 16:17</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="Cyber/docs.html" class="list-group-item list-group-item-action">
+                    <div class="content">
+                        <div class="link-info">
+                            <div class="title-row">
+                                <i class="bi bi-shield"></i>
+                                <span>CyberPunk Pump Docs Portal</span>
+                            </div>
+                            <div class="update-time">
+                                <i class="bi bi-clock-history"></i>
+                                <span>最后更新：2023年12月31日 11:26</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="kkk/src/index.html" class="list-group-item list-group-item-action">
+                    <div class="content">
+                        <div class="link-info">
+                            <div class="title-row">
+                                <i class="bi bi-box"></i>
+                                <span>test 项目</span>
+                            </div>
+                            <div class="update-time">
+                                <i class="bi bi-clock-history"></i>
+                                <span>最后更新：2023年12月30日 14:55</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>页面更新时间：<span id="lastUpdate"></span></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 搜索功能
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.list-group-item');
+            
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // 获取文件最后修改时间
+        async function getFileLastModified(filePath) {
+            try {
+                const response = await fetch(filePath, { method: 'HEAD' });
+                if (response.ok) {
+                    const lastModified = new Date(response.headers.get('last-modified'));
+                    return formatDate(lastModified);
+                }
+            } catch (error) {
+                console.error('Error fetching file:', error);
+            }
+            return null;
+        }
+
+        // 格式化日期
+        function formatDate(date) {
+            return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+        }
+
+        // 更新所有文件的最后修改时间
+        async function updateAllFileTimes() {
+            const timeElements = document.querySelectorAll('.update-time span');
+            for (const element of timeElements) {
+                const linkElement = element.closest('a');
+                if (linkElement) {
+                    const filePath = linkElement.getAttribute('href');
+                    const lastModified = await getFileLastModified(filePath);
+                    if (lastModified) {
+                        element.textContent = `最后更新：${lastModified}`;
+                    }
+                }
+            }
+        }
+
+        // 页面加载完成后更新时间
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAllFileTimes();
+            
+            // 更新页面时间
+            const now = new Date();
+            document.getElementById('lastUpdate').textContent = formatDate(now);
+        });
+    </script>
+</body>
+</html> 

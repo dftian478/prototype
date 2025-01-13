@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>量子算法工程师养成 - 玻色量子</title>
+    <!-- 本地库引用（优先） -->
+    <link rel="stylesheet" href="../../assets/lib/bootstrap.min.css">
+    <!-- CDN备选引用 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          onerror="this.onerror=null;this.href='../../assets/lib/bootstrap.min.css';">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css"
+          onerror="this.onerror=null;this.href='../../assets/lib/fontawesome-free.min.css';">
+    <!-- 全局样式 -->
+    <link rel="stylesheet" href="../../style.css">
+    <!-- 课程详情页专用样式 -->
+    <style>
+        .course-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .course-header {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .course-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+        .course-meta span {
+            margin-right: 1.5rem;
+        }
+        .course-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        .lesson-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .lesson-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.2s ease;
+        }
+        .lesson-item:hover {
+            background-color: #f8f9fa;
+        }
+        .lesson-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            cursor: pointer;
+        }
+        .lesson-check.completed {
+            background: #28a745;
+            border-color: #28a745;
+        }
+        .lesson-content {
+            flex-grow: 1;
+        }
+        .lesson-title {
+            margin: 0;
+            font-size: 1rem;
+            color: #333;
+        }
+        .lesson-duration {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .course-progress {
+            position: sticky;
+            top: 20px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .progress-circle {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            position: relative;
+        }
+        .progress-circle canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .progress-info {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .progress-percentage {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .progress-label {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .resource-list {
+            margin-top: 1rem;
+        }
+        .resource-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        .resource-item:hover {
+            background: #f8f9fa;
+            transform: translateX(5px);
+        }
+        .resource-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        .resource-info {
+            flex-grow: 1;
+        }
+        .resource-title {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .resource-size {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .project-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .project-card h4 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .project-card p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .code-block {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html"><i class="fas fa-atom"></i> 玻色量子</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html"><i class="fas fa-home"></i> 首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./"><i class="fas fa-graduation-cap"></i> 学习中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../community/"><i class="fas fa-users"></i> 社区互动</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../events/"><i class="fas fa-calendar-alt"></i> 活动中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resources/"><i class="fas fa-book"></i> 资源中心</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 课程内容 -->
+            <div class="col-lg-9">
+                <main class="course-content">
+                    <div class="course-header">
+                        <h1>量子算法工程师养成</h1>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 总时长：6个月</span>
+                            <span><i class="fas fa-users"></i> 8,460人在学</span>
+                            <span><i class="fas fa-signal"></i> 进阶级别</span>
+                        </div>
+                        <p class="lead">
+                            本课程面向已掌握量子计算基础的学习者，深入讲解量子算法设计与优化技术。
+                            通过实际项目练习，培养独立开发量子算法的能力。
+                        </p>
+                    </div>
+
+                    <!-- 第一部分：量子算法设计原理 -->
+                    <div class="course-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-sitemap" style="color: #1976d2;"></i>
+                            </div>
+                            <h2>第一部分：量子算法设计原理</h2>
+                        </div>
+                        <p>
+                            深入学习量子算法的设计方法和优化策略，掌握经典量子算法的工作原理。
+                        </p>
+                        <ul class="lesson-list">
+                            <li class="lesson-item">
+                                <div class="lesson-check completed">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="lesson-content">
+                                    <h3 class="lesson-title">1.1 量子算法设计范式</h3>
+                                    <div class="lesson-duration">90分钟</div>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-sm">开始学习</a>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-check completed">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="lesson-content">
+                                    <h3 class="lesson-title">1.2 Grover搜索算法深度解析</h3>
+                                    <div class="lesson-duration">120分钟</div>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-sm">开始学习</a>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-check"></div>
+                                <div class="lesson-content">
+                                    <h3 class="lesson-title">1.3 量子相位估计与HHL算法</h3>
+                                    <div class="lesson-duration">150分钟</div>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-sm">开始学习</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 第二部分：量子机器学习基础 -->
+                    <div class="course-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-brain" style="color: #2e7d32;"></i>
+                            </div>
+                            <h2>第二部分：量子机器学习基础</h2>
+                        </div>
+                        <p>
+                            探索量子计算在机器学习领域的应用，学习量子机器学习算法的实现方法。
+                        </p>
+                        <ul class="lesson-list">
+                            <li class="lesson-item">
+                                <div class="lesson-check"></div>
+                                <div class="lesson-content">
+                                    <h3 class="lesson-title">2.1 量子神经网络基础</h3>
+                                    <div class="lesson-duration">180分钟</div>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-sm">开始学习</a>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-check"></div>
+                                <div class="lesson-content">
+                                    <h3 class="lesson-title">2.2 变分量子算法</h3>
+                                    <div class="lesson-duration">150分钟</div>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-sm">开始学习</a>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-check"></div>
+                                <div class="lesson-content">
+                                    <h3 class="lesson-title">2.3 量子支持向量机</h3>
+                                    <div class="lesson-duration">160分钟</div>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-sm">开始学习</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 第三部分：量子优化算法实践 -->
+                    <div class="course-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-project-diagram" style="color: #c2185b;"></i>
+                            </div>
+                            <h2>第三部分：量子优化算法实践</h2>
+                        </div>
+                        <p>
+                            通过实际项目，学习如何应用量子算法解决现实世界中的优化问题。
+                        </p>
+                        <ul class="lesson-list">
+                            <li class="lesson-item">
+                                <div class="lesson-check"></div>
+                                <div class="lesson-content">
+                                    <h3 class="lesson-title">3.1 量子退火算法</h3>
+                                    <div class="lesson-duration">180分钟</div>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-sm">开始学习</a>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-check"></div>
+                                <div class="lesson-content">
+                                    <h3 class="lesson-title">3.2 QAOA算法实现</h3>
+                                    <div class="lesson-duration">200分钟</div>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-sm">开始学习</a>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-check"></div>
+                                <div class="lesson-content">
+                                    <h3 class="lesson-title">3.3 实际优化问题求解</h3>
+                                    <div class="lesson-duration">240分钟</div>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-sm">开始学习</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 项目实战 -->
+                    <div class="course-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-laptop-code" style="color: #6a1b9a;"></i>
+                            </div>
+                            <h2>项目实战</h2>
+                        </div>
+                        <p>
+                            通过完整的项目实践，巩固所学知识，培养实际问题解决能力。
+                        </p>
+                        
+                        <div class="project-card">
+                            <h4>项目一：金融投资组合优化</h4>
+                            <p>使用量子算法优化投资组合，实现风险收益的最优配置。</p>
+                            <div class="code-block">
+                                <pre>
+from qiskit import QuantumCircuit, execute, Aer
+from qiskit.algorithms import VQE, QAOA
+from qiskit.optimization import QuadraticProgram
+
+# 构建投资组合优化问题
+def build_portfolio_optimization():
+    # 示例代码...
+    pass</pre>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4>项目二：量子机器学习模型</h4>
+                            <p>实现一个量子神经网络，用于图像分类任务。</p>
+                            <div class="code-block">
+                                <pre>
+from qiskit.circuit.library import ZZFeatureMap
+from qiskit_machine_learning.algorithms import VQC
+from qiskit_machine_learning.kernels import QuantumKernel
+
+# 构建量子神经网络
+def build_quantum_neural_network():
+    # 示例代码...
+    pass</pre>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- 侧边栏：进度和资源 -->
+            <div class="col-lg-3">
+                <aside class="course-progress">
+                    <div class="progress-circle">
+                        <canvas id="progressCanvas" width="120" height="120"></canvas>
+                        <div class="progress-info">
+                            <div class="progress-percentage">40%</div>
+                            <div class="progress-label">已完成</div>
+                        </div>
+                    </div>
+                    <div class="text-center mb-4">
+                        <p>已完成4/11课程</p>
+                        <button class="btn btn-primary">继续学习</button>
+                    </div>
+
+                    <h4>学习资源</h4>
+                    <div class="resource-list">
+                        <a href="#" class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h5 class="resource-title">量子算法设计指南.pdf</h5>
+                                <div class="resource-size">4.2 MB</div>
+                            </div>
+                        </a>
+                        <a href="#" class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-code"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h5 class="resource-title">算法实现代码库</h5>
+                                <div class="resource-size">2.8 MB</div>
+                            </div>
+                        </a>
+                        <a href="#" class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h5 class="resource-title">项目实战视频</h5>
+                                <div class="resource-size">1.2 GB</div>
+                            </div>
+                        </a>
+                        <a href="#" class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h5 class="resource-title">量子机器学习教程</h5>
+                                <div class="resource-size">3.5 MB</div>
+                            </div>
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>关于我们</h5>
+                    <p>玻色量子是全球领先的量子计算学习与交流平台，致力于推动量子计算技术的普及与发展。</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>快速链接</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../learning/">学习中心</a></li>
+                        <li><a href="../community/">社区互动</a></li>
+                        <li><a href="../resources/">资源中心</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>联系我们</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope"></i> contact@quantum-platform.com</li>
+                        <li><i class="fas fa-phone"></i> +86 10-1234-5678</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2024 玻色量子. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript 依赖 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            onerror="this.onerror=null;this.src='../../assets/lib/bootstrap.bundle.min.js';"></script>
+    <script>
+        // 绘制进度圆环
+        const canvas = document.getElementById('progressCanvas');
+        const ctx = canvas.getContext('2d');
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = 54;
+
+        // 绘制背景圆环
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+        ctx.strokeStyle = '#f0f0f0';
+        ctx.lineWidth = 12;
+        ctx.stroke();
+
+        // 绘制进度圆环
+        const progress = 0.40; // 40%
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, -Math.PI / 2, (-Math.PI / 2) + (2 * Math.PI * progress));
+        ctx.strokeStyle = '#28a745';
+        ctx.lineWidth = 12;
+        ctx.stroke();
+
+        // 课程完成状态切换
+        document.querySelectorAll('.lesson-check').forEach(check => {
+            check.addEventListener('click', function() {
+                this.classList.toggle('completed');
+                if (this.classList.contains('completed')) {
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                } else {
+                    this.innerHTML = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
